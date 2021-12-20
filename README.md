@@ -63,9 +63,13 @@ To pa zato, ker vsaki bazi pripadata dva bita(torej dolžnina sekvenco bitov bo/
 Substitucijska-Permutacijska mreža krajše SP Mreža je osnovna komponenta nekaterih glavnih enkripcijskih algoritmov kot so AES, DES itd. Glavne lastnosti so predvsem enostavnost, hitrost ter učinkovist. 
 Kot že ime pove bo sestavljena iz S-škatel (substitucija) in P-škatel(permutacija) ter XOR operacije z ključem-kroga.
 
+![img](spn.png)
+
 ## S-škatle
 
 Za substitucijsko škatlo obstaja standard, ki zagotovalja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
+
+
 
 ## P-škatle
 
@@ -78,6 +82,8 @@ V našem primeru bodo permutacijske škatle permutirale vhodne bite s pomočjo m
 	G --> G --> C --> C
 
 TODO: v enem izmed paperjev se je shiftalo po vsaki rundi v desno(koncni rata prvi itd.)
+
+![image](https://user-images.githubusercontent.com/48418580/146830900-8b92dfc9-142c-4deb-bdea-be5ee96f8756.png)
 
 ## XOR z ključem-kroga
 
