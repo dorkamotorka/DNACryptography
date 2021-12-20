@@ -60,6 +60,8 @@ Zaradi same narave besedil in procesa enkodiranja, ki eni črki lahko pridedi ko
 To pa zato, ker vsaki bazi pripadata dva bita(torej dolžnina sekvenco bitov bo/mora biti deljiva z 8) in ker bomo uporabljali 8-bitne substitucijske škatle (S-box). 
 Če pogoju besedilo ne zadosti na koncu besedila dopolnimo verigo z Adenini(A-ji).
 
+TODO: Padding z najbolj zanesljivo bazo (ni Adenin)
+
 ## SP Mreža (ang. SPN)
 
 Substitucijska-Permutacijska mreža krajše SP Mreža je osnovna komponenta nekaterih glavnih enkripcijskih algoritmov kot so AES, DES itd. Glavne lastnosti so predvsem enostavnost, hitrost ter učinkovist. 
@@ -69,7 +71,7 @@ Kot že ime pove bo sestavljena iz S-škatel (substitucija) in P-škatel(permuta
 
 ## S-škatle
 
-Za substitucijsko škatlo obstaja standard, ki zagotovalja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
+Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
 
 ![image](https://user-images.githubusercontent.com/48418580/146831835-650a2b45-4a73-4d5c-b46b-0e818ff91afa.png)
 
