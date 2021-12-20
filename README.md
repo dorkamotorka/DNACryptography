@@ -17,6 +17,7 @@ Osnovni elementi, ki jih bomo uporabljali (analogno iz digitalnih vezjih) kot en
 je mulekula, ki širi oz. prepisuje genetsko informacijo iz DNA. 
 Konceptno deluje tako, da v procesu prepisovanja(iz ene izmed verig dvojne vijačnice) mRNA tvori enoverižno molekulo, pri čemer Timin nadomesi Uracilom, preostanek prebrane verige ostane enak.
 Torej če imamo sledečo dvojno vijačnico in mRNA, ki prebira:
+
     A G G G A (zgornja veriga)
     | | | | | (vez med paroma)  DNA
     T C C C T (spodnja veriga)
@@ -27,10 +28,11 @@ Torej če imamo sledečo dvojno vijačnico in mRNA, ki prebira:
 
 tRNA je mulekula, ki prevaja mRNA v eno izmed aminokislin. Prevajanje je enako komplementu dušikovih baz, ki skupaj tvorijo enoverižno mulekulo.
 Komplementi dušikovih baz so sledeči:
-- Gvanin --> Citozin
-- Citozin --> Gvanin
-- Adenin --> Uracil
-- Uracil --> Adenin
+
+	Gvanin --> Citozin
+	Citozin --> Gvanin
+	Adenin --> Uracil
+	Uracil --> Adenin
 
 tRNA je nazaj pretvorimo v DNA mulekulo tako da Uracil nadomestimo z Timinom.
 
@@ -69,7 +71,9 @@ Kot že ime pove bo sestavljena iz S-škatel (substitucija) in P-škatel(permuta
 
 Za substitucijsko škatlo obstaja standard, ki zagotovalja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
 
+![image](https://user-images.githubusercontent.com/48418580/146831835-650a2b45-4a73-4d5c-b46b-0e818ff91afa.png)
 
+TODO: Prepiši v dušikove baze
 
 ## P-škatle
 
