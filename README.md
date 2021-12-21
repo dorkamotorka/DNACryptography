@@ -36,6 +36,10 @@ Komplementi dušikovih baz so sledeči:
 
 tRNA je nazaj pretvorimo v DNA mulekulo tako da Uracil nadomestimo z Timinom.
 
+Tabela prevoda tRNA v aminokislino:
+
+![image](https://user-images.githubusercontent.com/48418580/146944466-66d331d4-eed5-4e10-ae88-bfb2acaf29ec.png)
+
 ## Zapisovanje binarnih podatkov v DNA
 
 Dandanes je zelo pomembno področje raziskovanja efektivno in zgoščeno shranjevanje podatkov. 
