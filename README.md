@@ -25,7 +25,7 @@ Torej če imamo sledečo dvojno vijačnico in mRNA, ki prebira:
 
 ## tRNA
 
-tRNA je mulekula, ki prevaja mRNA v eno izmed aminokislin. Prevajanje je enako komplementu dušikovih baz, ki skupaj tvorijo enoverižno mulekulo.
+tRNA je mulekula, ki prevaja mRNA v eno izmed aminokislin. Vsaka tRNA molekula ima tri nukleotide skupaj imenovane antikodon, in cilj prevajanje je da tRNA najde v mRNA takšno kombinacijo nukleotidov, ki bo ravno komplement nukleotidov tRNA-ja in če takšna kombinacija nukleotidov obstaja se le te prevede v eno izmed aminokislin. Torej prevod celotne verige je enako komplementu dušikovih baz, ki nato skupaj tvorijo enoverižno mulekulo.
 Komplementi dušikovih baz so sledeči:
 - Gvanin --> Citozin
 - Citozin --> Gvanin
