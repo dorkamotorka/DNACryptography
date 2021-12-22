@@ -1,7 +1,36 @@
 #!/usr/bin/env python
 
-perm_bin_inv = inv_permutation(perm_bin)
-print_blocks(perm_bin_inv)
+# DNA base to binary
+binary = {
+    'A': '00',
+    'C': '01',
+    'G': '10',
+    'T': '11',
+}
+
+# Binary to DNA
+dnab = {
+    '00': 'A',
+    '01': 'C',
+    '10': 'G',
+    '11': 'T',
+}
+
+# Timin v Uracil, ostalo enako
+inv_mRNA = {
+    'G': 'G',
+    'C': 'C',
+    'U': 'T',
+    'A': 'A',
+}
+
+# komplementi baz
+inv_tRNA = {
+    'C': 'G',
+    'G': 'C',
+    'U': 'A',
+    'A': 'U',
+}
 
 inv_permute = {
     1 : 40,
@@ -70,6 +99,46 @@ inv_permute = {
     64 : 25,
 }
 
+def change_timin_to_uracil(blocks):
+    dna = []
+    for p in blocks:
+        tmp = p.replace('T', 'U')
+        dna.append(tmp)
+
+    return dna
+
+def convert_binary_to_dna(blocks):
+    dna_text = []
+    for s in blocks:
+        tmp = ''
+        tmp2 = ''
+        for b in s:
+            tmp += b
+            if len(tmp) == 2:
+                tmp2 += dnab[tmp]
+                tmp = ''
+        dna_text.append(tmp2)
+
+    return dna_text
+
+def convert_dna_to_binary(blocks):
+    binary_text = []
+    for p in blocks:
+        tmp = ''
+        for c in p:
+            tmp += binary[c]
+        binary_text.append(tmp)
+
+def xor(blocks, key):
+    xored = []
+    for b in blocks:
+        y = int(b,2) ^ int(key,2)
+        bino = '{0:0{1}b}'.format(y,len(b))
+        assert 64 == len(bino)
+        xored.append(bino)
+
+    return xored
+
 def inv_permutation(blocks):
     perm = []
     for p in blocks:
@@ -83,4 +152,23 @@ def inv_permutation(blocks):
 
 
 if __name__ == '__main__':
-    pass
+    # DNA cipher text
+    ct = 'TTTAGAATGAGCAACGCGAGCTGAAGACTGCG'
+
+    # Convert DNA to binary
+
+    # XOR with key
+
+    # Inverse permutation
+
+    # Convert back to DNA
+
+    # Change Timin to Uracil
+
+    # Inverse tRNA and mRNA
+
+    # Inverse Substitution
+
+    # Remove padding
+
+    # Decode text

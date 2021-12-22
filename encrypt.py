@@ -502,7 +502,7 @@ def convert_dna_to_binary(blocks):
 
     return binary_text
 
-def xor(blocks):
+def xor(blocks, key):
     xored = []
     for b in blocks:
         y = int(b,2) ^ int(key,2)
@@ -560,8 +560,8 @@ if __name__ == '__main__':
     assert 64 == len(key)
 
     # XOR
-    xored = xor(perm_bin)
+    xored = xor(perm_bin, key)
     #print_blocks(xored)
 
     dna_text = convert_binary_to_dna(xored)
-    #print_blocks(dna_text)
+    print_blocks(dna_text)
