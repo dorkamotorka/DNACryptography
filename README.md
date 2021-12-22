@@ -26,7 +26,9 @@ Torej če imamo sledečo dvojno vijačnico in mRNA, ki prebira:
 
 ## tRNA
 
-tRNA je mulekula, ki prevaja mRNA v eno izmed aminokislin. Vsaka tRNA molekula ima tri nukleotide skupaj imenovane antikodon, in cilj prevajanje je da tRNA najde v mRNA takšno kombinacijo nukleotidov, ki bo ravno komplement nukleotidov tRNA-ja in če takšna kombinacija nukleotidov obstaja se le te prevede v eno izmed aminokislin. Torej prevod celotne verige je enako komplementu dušikovih baz, ki nato skupaj tvorijo enoverižno mulekulo.
+tRNA je mulekula, ki prevaja mRNA v eno izmed aminokislin. 
+Vsaka tRNA molekula ima tri nukleotide skupaj imenovane antikodon, in cilj prevajanje je da tRNA se poveže v mRNA s takšno kombinacijo nukleotidov, ki bo ravno komplement nukleotidov tRNA-ja in če takšna kombinacija nukleotidov obstaja bo ta ista tRNA omogočila prevod kodona mRNA v aminokislino. 
+Torej prevod celotne mRNA verige je enako komplementu dušikovih baz, ki nato skupaj tvorijo enoverižno mulekulo.
 Komplementi dušikovih baz so sledeči:
 
 	Gvanin --> Citozin
@@ -56,11 +58,9 @@ Pomembno je dodati da se vsak zapis oz. začetek DNA začne z start kodonom, ki 
 
 ## Padding 
 
-Zaradi same narave besedil in procesa enkodiranja, ki eni črki lahko pridedi kombinacijo več dušikovih baz, je potrebno pred enkriptiranjem poskrbeti da je dolžina DNA sekvence deljiva z 4. 
-To pa zato, ker vsaki bazi pripadata dva bita(torej dolžnina sekvenco bitov bo/mora biti deljiva z 8) in ker bomo uporabljali 8-bitne substitucijske škatle (S-box). 
-Če pogoju besedilo ne zadosti na koncu besedila dopolnimo verigo z Adenini(A-ji).
-
-TODO: Padding z najbolj zanesljivo bazo (ni Adenin)
+Zaradi same narave besedil in procesa Huffmanovega enkodiranja, ki eni črki lahko pridedi kombinacijo več dušikovih baz, je potrebno pred enkriptiranjem poskrbeti da je dolžina DNA sekvence posameznega bloka enaka 32. 
+To pa zato, ker vsaki bazi pripadata dva bita(torej dolžnina sekvence bitov bo enaka 64) in ker bomo uporabljali 8-bitne substitucijske škatle (S-box). 
+Če pogoju besedilo ne zadosti na koncu besedila dopolnimo verigo z Citozinom(C), saj so raziskave pokazale da je le ta najbolj odporen na spontane genske napake. [1]
 
 ## SP Mreža (ang. SPN)
 
@@ -73,9 +73,26 @@ Kot že ime pove bo sestavljena iz S-škatel (substitucija) in P-škatel(permuta
 
 Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
 
-![image](https://user-images.githubusercontent.com/48418580/146831835-650a2b45-4a73-4d5c-b46b-0e818ff91afa.png)
-
+|    | AA   | AG   | AC   | AT   | GA   | GG   | GC   | GT   | CA   | CG   | CC   | CT   | TA   | TC   | TG   | TT   |
+|----|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+| AA | GCAT | GTTA | GTGT | GTCT | TTAC | GCCT | GCTT | TAGG | ATAA | AAAG | GCGT | ACCT | TTTG | TCGT | CCCT | GTGC |
+| GA | TACC | CAAC | TACG | GTTC | TTCC | GGCG | GAGT | TTAA | CCTC | TCGA | CCAC | CCTT | CGTA | CCGA | GTAC | TAAA |
+| CA | CTGT | TTTC | CGAT | ACGC | ATGC | ATTT | TTGT | TATA | ATGA | CCGG | TGGG | TTAG | GTAG | TCCA | ATAG | AGGG |
+| TA | AAGA | TAGT | ACAT | TAAT | AGCA | CGGC | AAGG | CGCC | AAGT | AGAC | CAAA | TGAC | TGCT | ACGT | CTAC | GTGG |
+| AG | AACG | CAAT | ACTA | AGCC | AGCT | GCTG | GGCC | CCAA | GGAC | ATCT | TCGC | CTAT | ACCG | TGAT | ACTT | CAGA |
+| GG | GGAT | TCAG | AAAA | TGTC | ACAA | TTTA | CTAG | GGCT | GCCC | TACT | CTTG | ATCG | GACC | GATA | GGCA | TATT |
+| CG | TCAA | TGTT | CCCC | TTCT | GAAT | GATC | ATAT | CAGG | GAGG | TTCG | AAAC | GTTT | GGAA | ATTA | CGTT | CCCA |
+| TG | GGAG | CCAT | GAAA | CATT | CGAC | CGTC | ATCA | TTGG | CTTA | CTGC | TCCC | ACAG | AGAA | TTTT | TTAT | TCAC |
+| AC | CTTC | AACT | AGAT | TGTA | GGTT | CGGT | GAGA | AGGT | TAGA | CCGT | GTTG | ATTC | GCGA | GGTC | AGCG | GTAT |
+| GC | GCAA | CAAG | GATT | TCTA | ACAC | ACCC | CGAA | CACA | GAGC | TGTG | CTCA | AGGA | TCTG | GGTG | AACT | TCCT |
+| CC | TGAA | ATAC | ATCC | AACC | GACG | AAGC | ACGA | GGTA | TAAC | TCAT | CCTA | GCAC | CGAG | CGGG | TGGA | GTCG |
+| TC | TGGT | TACA | ATGT | GCTC | CATC | TCGG | GATG | CCCG | GCTA | GGGC | TTGA | TGCC | GCGG | GTCC | CCTG | AACA |
+| AT | CTCC | GTCA | ACGG | ACTG | AGTA | CCGC | CTGA | TAGC | TGCA | TCTC | GTGA | AGTT | GACT | CTTC | CACT | CACC |
+| CT | GTAA | ATTG | CTGG | GCGC | GACA | AAAT | TTGC | AATG | GCAG | ATGG | GGGT | CTCG | CAGC | TAAG | AGTC | CGTG |
+| GT | TGAG | TTCA | CGCA | AGAG | GCCG | TCCG | CATG | CGGA | CGCT | AGTG | CAGT | TGCG | TATG | GGGG | ACCA | TCTT |
+| TT | CATA | CCAG | CACG | AATC | CTTT | TGGC | GAAC | GCCA | GAAG | CGCG | ACTC | AATT | CTAA | GGGA | CTCT | AGGC |
 TODO: Prepiši v dušikove baze
+
 
 ## P-škatle
 
@@ -100,7 +117,7 @@ Preden naredimo XOR z ključem-kroga pretvorimo posamezno bazo v bite na sledeč
     Citozin(C) <=> 10
     Timin(T) <=> 11
 
-TODO: Dolžina ključa == dolžina text-a
+Nato 64-bitni tekst in 64-bitni ključ-kroga XOR-amo ter rezultat pretvorimo nazaj v dušikove baze.
 
 ## Generacija ključev-kroga
 
@@ -109,3 +126,7 @@ Iz primarnega ključa, ki ga uporabnik izbere se zgenerira toliko ključev-kroga
 TODO
 
 ## Test difuzije (spremeniš en bit inputa in so output biti vsi povsem drugačni)
+
+## References
+
+[1] https://web.stanford.edu/~kaleeg/chem32/biopol/
