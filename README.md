@@ -114,6 +114,7 @@ In njen inverz:
 
 ![image](https://user-images.githubusercontent.com/48418580/147093280-06613aba-caf9-4aa9-afdd-4ea7b52d753d.png)
 
+Operacija transkripcije (s pomočjo mRNA) in translacije (s pomočjo tRNA) vizualizirana:
 
 ![image](https://user-images.githubusercontent.com/48418580/146830900-8b92dfc9-142c-4deb-bdea-be5ee96f8756.png)
 
