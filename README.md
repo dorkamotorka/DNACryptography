@@ -42,6 +42,10 @@ Tabela prevoda tRNA v aminokislino:
 
 ![image](https://user-images.githubusercontent.com/48418580/146944466-66d331d4-eed5-4e10-ae88-bfb2acaf29ec.png)
 
+Operacija transkripcije (s pomočjo mRNA) in translacije (s pomočjo tRNA) vizualizirana:
+
+![image](https://user-images.githubusercontent.com/48418580/146830900-8b92dfc9-142c-4deb-bdea-be5ee96f8756.png)
+
 ## Zapisovanje binarnih podatkov v DNA
 
 Dandanes je zelo pomembno področje raziskovanja efektivno in zgoščeno shranjevanje podatkov. 
@@ -114,9 +118,6 @@ In njen inverz:
 
 ![image](https://user-images.githubusercontent.com/48418580/147093280-06613aba-caf9-4aa9-afdd-4ea7b52d753d.png)
 
-Operacija transkripcije (s pomočjo mRNA) in translacije (s pomočjo tRNA) vizualizirana:
-
-![image](https://user-images.githubusercontent.com/48418580/146830900-8b92dfc9-142c-4deb-bdea-be5ee96f8756.png)
 
 ## XOR z ključem-kroga
 
