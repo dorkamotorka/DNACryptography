@@ -95,8 +95,6 @@ Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter 
 | CT | GTAA | ATTG | CTGG | GCGC | GACA | AAAT | TTGC | AATG | GCAG | ATGG | GGGT | CTCG | CAGC | TAAG | AGTC | CGTG |
 | GT | TGAG | TTCA | CGCA | AGAG | GCCG | TCCG | CATG | CGGA | CGCT | AGTG | CAGT | TGCG | TATG | GGGG | ACCA | TCTT |
 | TT | CATA | CCAG | CACG | AATC | CTTT | TGGC | GAAC | GCCA | GAAG | CGCG | ACTC | AATT | CTAA | GGGA | CTCT | AGGC |
-TODO: Prepiši v dušikove baze
-
 
 ## P-škatle
 
