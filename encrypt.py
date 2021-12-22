@@ -353,86 +353,90 @@ sbox = {
     },
 }
 
-if __name__ == '__main__':
-    string = "Pozdravljena zaspanka"
+def encode_into_blocks(text):
     encoded = ''
-    for c in string:
-        # Spaces and symbols are missing
+    for c in text:
+        # Spaces and symbols are left out
         if c in he:
             encoded += he[c.lower()]
-
-    #print(encoded)
-    #print(len(encoded))
 
     n = 32 # 32 dušikovih baz
     blocks = [encoded[i:i+n] for i in range(0, len(encoded), n)]
 
-    # Padding
+    return blocks
+
+def padding(blocks):
     padded_blocks = []
     for b in blocks:
         if len(b) < 32:
             m = 32 - len(b)
             for _ in range(m):
                 b += 'C'
-
         padded_blocks.append(b)
 
-    #print(padded_blocks)
-    for pb in padded_blocks:
-        pass
-        #print(len(pb))
+    return padded_blocks
 
-    # Substitucija
+def print_blocks(blocks):
+    for b in blocks:
+        print(b)
 
-    # Permutacija
-    perm = []
-    for pb in padded_blocks:
+def substitution(blocks):
+    sub_text = []
+    for pb in blocks:
         tmp = ''
-        for c in pb:
+        tmp2 = ''
+        for b in pb:
+            tmp += b
+            if len(tmp) == 4:
+                # prva dva znaka row
+                # druga dva znaka column
+                tmp2 += sbox[tmp[0:2]][tmp[2:4]] 
+                tmp = ''
+        sub_text.append(tmp2)
+
+    return sub_text
+
+def permutation(blocks):
+    perm = []
+    for sb in sub_text:
+        tmp = ''
+        for c in sb:
             tmp += tRNA[mRNA[c]]
         perm.append(tmp)
+    
+    return perm
 
-    for p in perm:
-        pass
-        #print(p)
-        #print(len(p))
-
-    # Za DNA sekvenco zamenjaj Uracil z Timinom
+def change_uracil_to_timin(blocks):
     dna = []
-    for p in perm:
+    for p in blocks:
         tmp = p.replace('U', 'T')
         dna.append(tmp)
 
-    for p in dna:
-        print(p)
-        #print(len(p))
+    return dna
 
-    # Convert key and text to binary
-    key = '1010101010110111010101010101010101010101010101010110101010101011'
-    assert 64 == len(key)
-
+def convert_dna_to_binary(blocks):
     binary_text = []
-    for p in dna:
+    for p in blocks:
         tmp = ''
         for c in p:
             tmp += binary[c]
         binary_text.append(tmp)
 
-    for b in binary_text:
-        #print(b)
-        #print(len(b))
-        assert 64 == len(b)
+    return binary_text
 
-    # XOR
+def xor(blocks):
     xored = []
-    for b in binary_text:
+    for b in blocks:
         y = int(b,2) ^ int(key,2)
         bino = '{0:0{1}b}'.format(y,len(b))
         assert 64 == len(bino)
         xored.append(bino)
 
+    return xored
+
+def convert_binary_to_dna(blocks):
     dna_text = []
-    for s in xored:
+    for s in blocks:
         tmp = ''
         tmp2 = ''
         for b in s:
@@ -442,8 +446,39 @@ if __name__ == '__main__':
                 tmp = ''
         dna_text.append(tmp2)
 
-    # Convert back to DNA
-    for b in dna_text:
-        print(b)
+    return dna_text
 
-# TODO: Everything in functions
+if __name__ == '__main__':
+    string = "Zapadeljeprvisn"
+    blocks = encode_into_blocks(string)
+
+    # Padding
+    padded_blocks = padding(blocks)
+    print_blocks(padded_blocks)
+
+    # Substitucija
+    sub_text = substitution(padded_blocks)
+    #print_blocks(sub_text)
+
+    # Permutacija
+    perm = permutation(sub_text)
+    #print_blocks(perm)
+
+    # Za DNA sekvenco zamenjaj Uracil z Timinom
+    dna = change_uracil_to_timin(perm)
+    #print_blocks(dna)
+
+    # Convert key and text to binary
+    # TODO: key generation
+    key = '1010101010110111010101010101010101010101010101010110101010101011'
+    assert 64 == len(key)
+
+    binary_text = convert_dna_to_binary(dna)
+    #print_blocks(binary_text)
+    
+    # XOR
+    xored = xor(binary_text)
+    #print_blocks(xored)
+
+    dna_text = convert_binary_to_dna(xored)
+    print_blocks(dna_text)
