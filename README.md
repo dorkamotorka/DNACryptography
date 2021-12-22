@@ -113,9 +113,8 @@ V našem primeru bodo permutacijske škatle permutirale vhodne bite s pomočjo m
 
 S pomočjo testa difuzije smo ugotovili da operaciji mRNA in tRNA ne zagotoviti zadovoljive enkripcije, zatorej smo le to izboljšali s pomočjo standarnega 64-bitnega P-boxa:
 
-![image](https://user-images.githubusercontent.com/48418580/147093232-e3b225f2-db53-4c76-8a35-a6cc8120e8c7.png)
 | 58 | 50 | 42 | 34 | 26 | 18 | 10 | 2 |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:-:|
+|:--:|:-:|:--:|:--:|:--:|:--:|:--:|:--:|
 | 60 | 52 | 44 | 36 | 28 | 20 | 12 | 4 |
 | 62 | 54 | 46 | 38 | 30 | 22 | 14 | 6 |
 | 64 | 56 | 48 | 40 | 32 | 24 | 16 | 8 |
@@ -124,9 +123,10 @@ S pomočjo testa difuzije smo ugotovili da operaciji mRNA in tRNA ne zagotoviti 
 | 61 | 53 | 45 | 37 | 29 | 21 | 13 | 5 |
 | 63 | 55 | 47 | 39 | 31 | 23 | 15 | 7 |
 
-In njen inverz:
+Pri čemer na prvo mesto pride baza na 58 indeksu, na drugo mesto baza na 50 indeksu in tako naprej.
 
-![image](https://user-images.githubusercontent.com/48418580/147093280-06613aba-caf9-4aa9-afdd-4ea7b52d753d.png)
+In inverz P-škatle:
+
 | 40 | 8 | 48 | 16 | 56 | 24 | 64 | 32 |
 |:--:|:-:|:--:|:--:|:--:|:--:|:--:|:--:|
 | 39 | 7 | 47 | 15 | 55 | 23 | 63 | 31 |
