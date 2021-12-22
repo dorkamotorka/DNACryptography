@@ -129,7 +129,7 @@ TODO
 
 ## Test difuzije 
 
-(spremeniš en bit inputa in so output biti vsi povsem drugačni)
+Sprememba ene izmed črke vhodnega teksta, bi morala vplivati na vse vrednosti izhoda.
 
 TODO
 

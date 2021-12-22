@@ -353,6 +353,73 @@ sbox = {
     },
 }
 
+permute = {
+    1 : 58,
+    2 : 50,
+    3 : 42,
+    4 : 34,
+    5 : 26,
+    6 : 18,
+    7 : 10,
+    8 : 2,
+    9 : 60,
+    10 : 52,
+    11 : 44,
+    12 : 36,
+    13 : 28,
+    14 : 20,
+    15 : 12,
+    16 : 4,
+    17 : 62,
+    18 : 54,
+    19 : 46,
+    20 : 38,
+    21 : 30,
+    22 : 22,
+    23 : 14,
+    24 : 6,
+    25 : 64,
+    26 : 56,
+    27 : 48,
+    28 : 40,
+    29 : 32,
+    30 : 24,
+    31 : 16,
+    32 : 8,
+    33 : 57,
+    34 : 49,
+    35 : 41,
+    36 : 33,
+    37 : 25,
+    38 : 17,
+    39 : 9,
+    40 : 1,
+    41 : 59,
+    42 : 51,
+    43 : 43,
+    44 : 35,
+    45 : 27,
+    46 : 19,
+    47 : 11,
+    48 : 3,
+    49 : 61,
+    50 : 53,
+    51 : 45,
+    52 : 37,
+    53 : 29,
+    54 : 21,
+    55 : 13,
+    56 : 5,
+    57 : 63,
+    58 : 55,
+    59 : 47,
+    60 : 39,
+    61 : 31,
+    62 : 23,
+    63 : 15,
+    64 : 7,
+}
+
 def encode_into_blocks(text):
     encoded = ''
     for c in text:
@@ -398,7 +465,18 @@ def substitution(blocks):
 
 def permutation(blocks):
     perm = []
-    for sb in sub_text:
+    for p in blocks:
+        tmp = ''
+        for i, c in enumerate(p):
+            tmp += p[permute[i+1] - 1] 
+        perm.append(tmp)
+        tmp = ''
+
+    return perm
+
+def mrna_trna(blocks):
+    perm = []
+    for sb in blocks:
         tmp = ''
         for c in sb:
             tmp += tRNA[mRNA[c]]
@@ -449,36 +527,41 @@ def convert_binary_to_dna(blocks):
     return dna_text
 
 if __name__ == '__main__':
-    string = "Zapadeljeprvisn"
+    string = "Zapadeljeprvisa"
     blocks = encode_into_blocks(string)
 
     # Padding
     padded_blocks = padding(blocks)
-    print_blocks(padded_blocks)
+    #print_blocks(padded_blocks)
 
     # Substitucija
     sub_text = substitution(padded_blocks)
     #print_blocks(sub_text)
 
     # Permutacija
-    perm = permutation(sub_text)
+    perm = mrna_trna(sub_text)
     #print_blocks(perm)
 
     # Za DNA sekvenco zamenjaj Uracil z Timinom
     dna = change_uracil_to_timin(perm)
     #print_blocks(dna)
 
-    # Convert key and text to binary
+    # Convert text to binary
+    binary_text = convert_dna_to_binary(dna)
+    print_blocks(binary_text)
+
+    # Permutacija binary - mRNA + tRNA samo vrne nasprotni par (back-and-forth)
+    perm_bin = permutation(binary_text)
+    #print_blocks(perm_bin)
+
+    # Convert key to binary
     # TODO: key generation
     key = '1010101010110111010101010101010101010101010101010110101010101011'
     assert 64 == len(key)
 
-    binary_text = convert_dna_to_binary(dna)
-    #print_blocks(binary_text)
-    
     # XOR
-    xored = xor(binary_text)
+    xored = xor(perm_bin)
     #print_blocks(xored)
 
     dna_text = convert_binary_to_dna(xored)
-    print_blocks(dna_text)
+    #print_blocks(dna_text)
