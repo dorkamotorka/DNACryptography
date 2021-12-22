@@ -106,7 +106,14 @@ V našem primeru bodo permutacijske škatle permutirale vhodne bite s pomočjo m
 	C --> C --> G --> G
 	G --> G --> C --> C
 
-TODO: v enem izmed paperjev se je shiftalo po vsaki rundi v desno(koncni rata prvi itd.)
+S pomočjo testa difuzije smo ugotovili da operaciji mRNA in tRNA ne zagotoviti zadovoljive enkripcije, zatorej smo le to izboljšali s pomočjo standarnega 64-bitnega P-boxa:
+
+![image](https://user-images.githubusercontent.com/48418580/147093232-e3b225f2-db53-4c76-8a35-a6cc8120e8c7.png)
+
+In njen inverz:
+
+![image](https://user-images.githubusercontent.com/48418580/147093280-06613aba-caf9-4aa9-afdd-4ea7b52d753d.png)
+
 
 ![image](https://user-images.githubusercontent.com/48418580/146830900-8b92dfc9-142c-4deb-bdea-be5ee96f8756.png)
 
