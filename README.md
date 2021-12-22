@@ -41,28 +41,12 @@ tRNA je nazaj pretvorimo v DNA mulekulo tako da Uracil nadomestimo z Timinom.
 Tabela prevoda tRNA v aminokislino:
 
 ![image](https://user-images.githubusercontent.com/48418580/146944466-66d331d4-eed5-4e10-ae88-bfb2acaf29ec.png)
-| 58 | 50 | 42 | 34 | 26 | 18 | 10 | 2 |
-|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:-:|
-| 60 | 52 | 44 | 36 | 28 | 20 | 12 | 4 |
-| 62 | 54 | 46 | 38 | 30 | 22 | 14 | 6 |
-| 64 | 56 | 48 | 40 | 32 | 24 | 16 | 8 |
-| 57 | 49 | 41 | 33 | 25 | 17 | 9  | 1 |
-| 59 | 51 | 43 | 35 | 27 | 19 | 11 | 3 |
-| 61 | 53 | 45 | 37 | 29 | 21 | 13 | 5 |
-| 63 | 55 | 47 | 39 | 31 | 23 | 15 | 7 |
+
 
 Operacija transkripcije (s pomočjo mRNA) in translacije (s pomočjo tRNA) vizualizirana:
 
 ![image](https://user-images.githubusercontent.com/48418580/146830900-8b92dfc9-142c-4deb-bdea-be5ee96f8756.png)
-| 40 | 8 | 48 | 16 | 56 | 24 | 64 | 32 |
-|:--:|:-:|:--:|:--:|:--:|:--:|:--:|:--:|
-| 39 | 7 | 47 | 15 | 55 | 23 | 63 | 31 |
-| 38 | 6 | 46 | 14 | 54 | 22 | 62 | 30 |
-| 37 | 5 | 45 | 13 | 53 | 21 | 61 | 29 |
-| 36 | 4 | 44 | 12 | 52 | 20 | 60 | 28 |
-| 35 | 3 | 43 | 11 | 51 | 19 | 59 | 27 |
-| 34 | 2 | 42 | 10 | 50 | 18 | 58 | 26 |
-| 33 | 1 | 41 | 9  | 49 | 17 | 57 | 25 |
+
 ## Zapisovanje binarnih podatkov v DNA
 
 Dandanes je zelo pomembno področje raziskovanja efektivno in zgoščeno shranjevanje podatkov. 
@@ -130,11 +114,28 @@ V našem primeru bodo permutacijske škatle permutirale vhodne bite s pomočjo m
 S pomočjo testa difuzije smo ugotovili da operaciji mRNA in tRNA ne zagotoviti zadovoljive enkripcije, zatorej smo le to izboljšali s pomočjo standarnega 64-bitnega P-boxa:
 
 ![image](https://user-images.githubusercontent.com/48418580/147093232-e3b225f2-db53-4c76-8a35-a6cc8120e8c7.png)
+| 58 | 50 | 42 | 34 | 26 | 18 | 10 | 2 |
+|:--:|:--:|:--:|:--:|:--:|:--:|:--:|:-:|
+| 60 | 52 | 44 | 36 | 28 | 20 | 12 | 4 |
+| 62 | 54 | 46 | 38 | 30 | 22 | 14 | 6 |
+| 64 | 56 | 48 | 40 | 32 | 24 | 16 | 8 |
+| 57 | 49 | 41 | 33 | 25 | 17 | 9  | 1 |
+| 59 | 51 | 43 | 35 | 27 | 19 | 11 | 3 |
+| 61 | 53 | 45 | 37 | 29 | 21 | 13 | 5 |
+| 63 | 55 | 47 | 39 | 31 | 23 | 15 | 7 |
 
 In njen inverz:
 
 ![image](https://user-images.githubusercontent.com/48418580/147093280-06613aba-caf9-4aa9-afdd-4ea7b52d753d.png)
-
+| 40 | 8 | 48 | 16 | 56 | 24 | 64 | 32 |
+|:--:|:-:|:--:|:--:|:--:|:--:|:--:|:--:|
+| 39 | 7 | 47 | 15 | 55 | 23 | 63 | 31 |
+| 38 | 6 | 46 | 14 | 54 | 22 | 62 | 30 |
+| 37 | 5 | 45 | 13 | 53 | 21 | 61 | 29 |
+| 36 | 4 | 44 | 12 | 52 | 20 | 60 | 28 |
+| 35 | 3 | 43 | 11 | 51 | 19 | 59 | 27 |
+| 34 | 2 | 42 | 10 | 50 | 18 | 58 | 26 |
+| 33 | 1 | 41 | 9  | 49 | 17 | 57 | 25 |
 
 ## XOR z ključem-kroga
 
