@@ -132,9 +132,7 @@ Nato 64-bitni tekst in 64-bitni ključ-kroga XOR-amo ter rezultat pretvorimo naz
 
 ## Generacija ključev-kroga
 
-Iz primarnega ključa, ki ga uporabnik izbere se zgenerira toliko ključev-kroga kolikor je krogov enkripcije SP mreže.
-
-TODO
+Iz primarnega ključa (ki je v našem algoritmu nujno integer zaradi načina generiranja), ki ga uporabnik izbere se zgenerira toliko ključev-kroga kolikor je krogov enkripcije SP mreže.
 
 ## Test difuzije 
 

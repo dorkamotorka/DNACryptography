@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 
+import random
+
 # Huffman Enkodiranje
 he = {
     'a': 'GC',
@@ -526,8 +528,23 @@ def convert_binary_to_dna(blocks):
 
     return dna_text
 
+def generate_round_keys(src):
+    num_keys = 16
+    round_keys = []
+    for k in range(num_keys):
+        random.seed(src + k)
+        x = random.getrandbits(64)
+        bino = '{0:0{1}b}'.format(x,64)
+        assert len(bino) == 64
+        round_keys.append(bino)
+
+    return round_keys
+
 if __name__ == '__main__':
     string = "Zapadeljeprvisa"
+    key = 1234 # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
+    round_keys = generate_round_keys(key)
+    print(round_keys)
     blocks = encode_into_blocks(string)
 
     # Padding
