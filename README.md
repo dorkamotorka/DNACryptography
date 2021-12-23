@@ -165,6 +165,9 @@ TODO
 ## Zaznava in popravek genskih mutacij
 
 TODO
+- hash vsakih npr. 20 dusikovih baz (naredi optimalno, saj nato shiftanje baz bo 4^m)
+- z hashom zaznaj da se je sekvenca spremenila 
+- Če zaznaš da je določen del stranda spremenjen, potem shiftaj baze in preverjaj če vrne isti hash - s tem si popravil strand
 
 ## Test difuzije 
 
