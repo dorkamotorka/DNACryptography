@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-import encrypt
 transcribe = {
     '0': 'AA',
     '1': 'AG',
@@ -18,33 +17,33 @@ transcribe = {
     'e': 'TG',
     'f': 'TT',
 }
+inverse_sbox = {}
+first_line_transcribed_inverse_sbox = []
+with open("inverse_sbox.txt") as f:
+    first_line = next(f).split()
+    for char in first_line:
+        first_line_transcribed_inverse_sbox.append(transcribe[char[1]])
+    for i, line in enumerate(f):
+        beginning_char = transcribe[line[0][0]]
+        line_dict = {}
+        for k, char in enumerate(first_line_transcribed_inverse_sbox):
+            transcribed1 = transcribe[line.split()[k + 1][0]]
+            transcribed2 = transcribe[line.split()[k + 1][1]]
+            line_dict[char] = transcribed1 + transcribed2
+        inverse_sbox[beginning_char] = line_dict
 
-# inverse_sbox = {}
-# with open("inverse_sbox.txt") as f:
-#     first_line = next(f).split()
-#     first_line_transcribed = []
-#     for char in first_line[1:]:
-#         first_line_transcribed.append(transcribe[char[1]])
-#     for i, line in enumerate(f):
-#         beginning_char = transcribe[line[0][0]]
-#         line_dict = {}
-#         for k, char in enumerate(first_line_transcribed):
-#             transcribed1 = transcribe[line.split()[k + 2][0]]
-#             transcribed2 = transcribe[line.split()[k + 2][1]]
-#             line_dict[char] = transcribed1 + transcribed2
-#         inverse_sbox[beginning_char] = line_dict
 
 sbox = {}
+first_line_transcribed_sbox = []
 with open("sbox.txt") as f:
     first_line = next(f).split()
-    first_line_transcribed = []
     for char in first_line:
-        first_line_transcribed.append(transcribe[char[1]])
+        first_line_transcribed_sbox.append(transcribe[char[1]])
 
     for i, line in enumerate(f):
         beginning_char = transcribe[line[0][0]]
         line_dict = {}
-        for k, char in enumerate(first_line_transcribed):
+        for k, char in enumerate(first_line_transcribed_sbox):
             transcribed1 = transcribe[line.split()[k + 1][0]]
             transcribed2 = transcribe[line.split()[k + 1][1]]
             line_dict[char] = transcribed1 + transcribed2
@@ -66,9 +65,7 @@ s_box_test = {
     }
 }
 
-import json
-print(json.dumps(sbox, indent=4))
-
-for key in sbox:
-    print(sbox[key] == encrypt.sbox[key])
+### Pretty printing
+# import json
+# print(json.dumps(sbox, indent=4))
 

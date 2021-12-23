@@ -2,7 +2,9 @@
 
 import random
 import hashlib
+import parse_sbox
 
+sbox_parsed = parse_sbox.sbox 
 # Huffman Enkodiranje
 he = {
     'a': 'GC',

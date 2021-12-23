@@ -81,9 +81,9 @@ Kot že ime pove bo sestavljena iz S-škatel (substitucija) in P-škatel(permuta
 ## Rijndael S-škatle
 
 Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
-
-|    | AA   | AG   | AC   | AT   | GA   | GG   | GC   | GT   | CA   | CG   | CC   | CT   | TA   | TC   | TG   | TT   |
-|----|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|------|
+### Rijandel S-Škatla
+|   | AA | AG | AC | AT | GA | GG | GC | GT | CA | CG | CC | CT | TA | TC | TG | TT |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | AA | GCAT | GTTA | GTGT | GTCT | TTAC | GCCT | GCTT | TAGG | ATAA | AAAG | GCGT | ACCT | TTTG | TCGT | CCCT | GTGC |
 | AG | TACC | CAAC | TACG | GTTC | TTCC | GGCG | GAGT | TTAA | CCTC | TCGA | CCAC | CCTT | CGTA | CCGA | GTAC | TAAA |
 | AC | CTGT | TTTC | CGAT | ACGC | ATGC | ATTT | TTGT | TATA | ATGA | CCGG | TGGG | TTAG | GTAG | TCCA | ATAG | AGGG |
@@ -92,7 +92,7 @@ Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter 
 | GG | GGAT | TCAG | AAAA | TGTC | ACAA | TTTA | CTAG | GGCT | GCCC | TACT | CTTG | ATCG | GACC | GATA | GGCA | TATT |
 | GC | TCAA | TGTT | CCCC | TTCT | GAAT | GATC | ATAT | CAGG | GAGG | TTCG | AAAC | GTTT | GGAA | ATTA | CGTT | CCCA |
 | GT | GGAG | CCAT | GAAA | CATT | CGAC | CGTC | ATCA | TTGG | CTTA | CTGC | TCCC | ACAG | AGAA | TTTT | TTAT | TCAC |
-| CA | CTTC | AACT | AGAT | TGTA | GGTT | CGGT | GAGA | AGGT | TAGA | CCGT | GTTG | ATTC | GCGA | GGTC | AGCG | GTAT |
+| CA | TATC | AATA | AGAT | TGTA | GGTT | CGGT | GAGA | AGGT | TAGA | CCGT | GTTG | ATTC | GCGA | GGTC | AGCG | GTAT |
 | CG | GCAA | CAAG | GATT | TCTA | ACAC | ACCC | CGAA | CACA | GAGC | TGTG | CTCA | AGGA | TCTG | GGTG | AACT | TCCT |
 | CC | TGAA | ATAC | ATCC | AACC | GACG | AAGC | ACGA | GGTA | TAAC | TCAT | CCTA | GCAC | CGAG | CGGG | TGGA | GTCG |
 | CT | TGGT | TACA | ATGT | GCTC | CATC | TCGG | GATG | CCCG | GCTA | GGGC | TTGA | TGCC | GCGG | GTCC | CCTG | AACA |
@@ -101,6 +101,27 @@ Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter 
 | TG | TGAG | TTCA | CGCA | AGAG | GCCG | TCCG | CATG | CGGA | CGCT | AGTG | CAGT | TGCG | TATG | GGGG | ACCA | TCTT |
 | TT | CATA | CCAG | CACG | AATC | CTTT | TGGC | GAAC | GCCA | GAAG | CGCG | ACTC | AATT | CTAA | GGGA | CTCT | AGGC |
 
+
+
+### Inverzna Rijandel S-Škatla
+|   | AA | AG | AC | AT | GA | GG | GC | GT | CA | CG | CC | CT | TA | TC | TG | TT |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| AA | GGAC | AACG | GCCC | TCGG | ATAA | ATGC | CCGG | ATCA | CTTT | GAAA | CCAT | CGTG | CAAG | TTAT | TCGT | TTCT |
+| AG | GTTA | TGAT | ATCG | CAAC | CGCT | ACTT | TTTT | CAGT | ATGA | CATG | GAAT | GAGA | TAGA | TCTG | TGCG | TACT |
+| AC | GGGA | GTCT | CGGA | ATAC | CCGC | TAAC | ACAT | ATTC | TGTG | GATA | CGGG | AACT | GAAC | TTCC | TAAT | GATG |
+| AT | AACA | ACTG | CCAG | GCGC | ACCA | TCCG | ACGA | CTAC | GTGC | GGCT | CCAC | GACG | GCTC | CACT | TCAG | ACGG |
+| GA | GTAC | TTCA | TTGC | GCGA | CAGC | GCCA | CGCA | AGGC | TCGA | CCGA | GGTA | TATA | GGTC | GCGG | CTGC | CGAC |
+| GG | GCTA | GTAA | GACA | GGAA | TTTC | TGTC | CTCG | TCCC | GGTG | AGGG | GAGC | GGGT | CCGT | CATC | CGTC | CAGA |
+| GC | CGAA | TCCA | CCCT | AAAA | CATA | CTTA | TCAT | AACC | TTGT | TGGA | GGCA | AAGG | CTCA | CTAT | GAGG | AAGC |
+| GT | TCAA | ACTA | AGTG | CATT | TACC | ATTT | AATT | AAAC | TAAG | CCTT | CTTC | AAAT | AAAG | AGAT | CACC | GCCT |
+| CA | ATCC | CGAG | AGAG | GAAG | GATT | GCGT | TCTA | TGCC | CGGT | TTAC | TATT | TATG | TTAA | CTGA | TGGC | GTAT |
+| CG | CGGC | CCTA | GTGA | ACAC | TGGT | CCTC | ATGG | CAGG | TGAC | TTCG | ATGT | TGCA | AGTA | GTGG | TCTT | GCTG |
+| CC | GAGT | TTAG | AGCC | GTAG | AGTC | ACCG | TAGG | CACG | GCTT | CTGT | GCAC | AATG | CCCC | AGCA | CTTG | AGCT |
+| CT | TTTA | GGGC | ATTG | GACT | TAGC | TCAC | GTCG | ACAA | CGCC | TCCT | TAAA | TTTG | GTCA | TATC | GGCC | TTGA |
+| TA | AGTT | TCTC | CCCA | ATAT | CACA | AAGT | TAGT | ATAG | CTAG | AGAC | AGAA | GGCG | ACGT | CAAA | TGTA | GGTT |
+| TC | GCAA | GGAG | GTTT | CCCG | AGCG | CTGG | GACC | AATC | ACTC | TGGG | GTCC | CGTT | CGAT | TACG | CGTA | TGTT |
+| TG | CCAA | TGAA | ATCT | GATC | CCTG | ACCC | TTGG | CTAA | TACA | TGCT | CTCT | ATTA | CAAT | GGAT | CGCG | GCAG |
+| TT | AGGT | ACCT | AAGA | GTTG | CTCC | GTGT | TCGC | ACGC | TGAG | GCCG | AGGA | GCAT | GGGG | ACAG | AATA | GTTC |
 ## P-škatle
 
 V našem primeru bodo permutacijske škatle permutirale vhodne bite s pomočjo mRNA in tRNA operacij(opisane zgoraj) ter pretvorbe nazaj v DNA sekvenco. 

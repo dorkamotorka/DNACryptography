@@ -1,5 +1,8 @@
 #!/usr/bin/env python
 
+import parse_sbox
+
+inverse_sbox = parse_sbox.inverse_sbox
 # DNA base to binary
 binary = {
     'A': '00',
