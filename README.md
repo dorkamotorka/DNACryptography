@@ -152,6 +152,20 @@ Nato 64-bitni tekst in 64-bitni ključ-kroga XOR-amo ter rezultat pretvorimo naz
 
 Iz primarnega ključa (ki je v našem algoritmu nujno integer zaradi načina generiranja), ki ga uporabnik izbere se zgenerira toliko ključev-kroga kolikor je krogov enkripcije SP mreže.
 
+## Integriteta shranjenih podatkov
+
+Da zagotovimo, da shranjeni podatki niso spremenjeni, torej da zakriptiran tekst v bazi ni zlonamerno spremenjen dodamo podatkom še hash, ki je izračunan s pomočjo enkripcijkega ključa in podatkov, tako da ko podatke prebiramo iz podatkovne baze lahko preverimo, da le ti niso bili spremenjeni brez našega vedenja.
+
+To odpre novo razmišljanje, namreč zagotoviti moramo da če pride do spontanih genskih mutacij, da smo jih sposobni zaznati in odpraviti, drugače bo izračunan hash napačen, ko bomo brali podatke iz zapisa.
+
+## Spontane genske mutacije
+
+TODO
+
+## Zaznava in popravek genskih mutacij
+
+TODO
+
 ## Test difuzije 
 
 Sprememba ene izmed črke vhodnega teksta, bi morala vplivati na vse vrednosti izhoda.

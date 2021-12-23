@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import random
+import hashlib
 
 # Huffman Enkodiranje
 he = {
@@ -540,11 +541,32 @@ def generate_round_keys(src):
 
     return round_keys
 
+def compute_hashes(blocks, key):
+    hashes = []
+    for b in blocks:
+        m = hashlib.sha256()
+        m.update(str(key).encode('utf-8'))
+        m.update(b.encode('utf-8'))
+        h = m.hexdigest()
+        hashes.append(h)
+
+    return hashes
+
+def convert_hex_to_bin(blocks):
+    binaries = []
+    for b in blocks:
+        scale = 16 ## equals to hexadecimal
+        x = bin(int(b, scale))[2:]
+        binaries.append(x)
+
+    return binaries
+
 if __name__ == '__main__':
     string = "Zapadeljeprvisa"
+    print(string)
     key = 1234 # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
     round_keys = generate_round_keys(key)
-    print(round_keys)
+    #print(round_keys)
     blocks = encode_into_blocks(string)
 
     # Padding
@@ -565,20 +587,25 @@ if __name__ == '__main__':
 
     # Convert text to binary
     binary_text = convert_dna_to_binary(dna)
-    print_blocks(binary_text)
+    #print_blocks(binary_text)
 
     # Permutacija binary - mRNA + tRNA samo vrne nasprotni par (back-and-forth)
     perm_bin = permutation(binary_text)
     #print_blocks(perm_bin)
 
-    # Convert key to binary
-    # TODO: key generation
-    key = '1010101010110111010101010101010101010101010101010110101010101011'
-    assert 64 == len(key)
-
     # XOR
-    xored = xor(perm_bin, key)
+    xored = xor(perm_bin, round_keys[0])
     #print_blocks(xored)
 
     dna_text = convert_binary_to_dna(xored)
     print_blocks(dna_text)
+
+    # Compute hash from key and cipher text to provide integrity
+    hashes = compute_hashes(dna_text, key)
+    #print_blocks(hashes)
+
+    # Convert hash digest to DNA sequence and store it
+    binaries = convert_hex_to_bin(hashes)
+    #print_blocks(binaries)
+    dna_hashes = convert_binary_to_dna(binaries)
+    print_blocks(dna_hashes)
