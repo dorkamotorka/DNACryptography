@@ -78,10 +78,12 @@ Kot že ime pove bo sestavljena iz S-škatel (substitucija) in P-škatel(permuta
 
 ![img](spn.png)
 
-## Rijndael S-škatle
+## S-box
+
+### Rijndael S-škatla
 
 Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je priredimo za substitucijo z dušikovimi bazami:
-### Rijandel S-Škatla
+
 |   | AA | AG | AC | AT | GA | GG | GC | GT | CA | CG | CC | CT | TA | TC | TG | TT |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | AA | GCAT | GTTA | GTGT | GTCT | TTAC | GCCT | GCTT | TAGG | ATAA | AAAG | GCGT | ACCT | TTTG | TCGT | CCCT | GTGC |
@@ -101,9 +103,8 @@ Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter 
 | TG | TGAG | TTCA | CGCA | AGAG | GCCG | TCCG | CATG | CGGA | CGCT | AGTG | CAGT | TGCG | TATG | GGGG | ACCA | TCTT |
 | TT | CATA | CCAG | CACG | AATC | CTTT | TGGC | GAAC | GCCA | GAAG | CGCG | ACTC | AATT | CTAA | GGGA | CTCT | AGGC |
 
+### Inverzna Rijndael S-Škatla
 
-
-### Inverzna Rijandel S-Škatla
 |   | AA | AG | AC | AT | GA | GG | GC | GT | CA | CG | CC | CT | TA | TC | TG | TT |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | AA | GGAC | AACG | GCCC | TCGG | ATAA | ATGC | CCGG | ATCA | CTTT | GAAA | CCAT | CGTG | CAAG | TTAT | TCGT | TTCT |
