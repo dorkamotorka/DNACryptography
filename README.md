@@ -62,6 +62,29 @@ Tabela prestavlja preslikava:
 
 ![image](https://user-images.githubusercontent.com/48418580/145455912-35f58f66-00c9-4159-999d-deba0eb0a9a0.png)
 
+| a | ACAT | y | AAAA | & | GGTG |
+|---|------|---|------|---|------|
+| b | ACTG | v | CCCC | Q | TATC |
+| c | ACCC | w | GCTA | R | TACG |
+| d | ACGA | x | GCCC | S | CATC |
+| e | TCAT | z | AATT | T | CACC |
+| f | TCTG | A | AACC | U | GATT |
+| g | TCCG | B | AAGG | V | GACC |
+| h | TCGT | C | TAAT | W | ATAA |
+| i | CCAG | D | TATG | X | ATTT |
+| j | CCTA | E | TACC | Y | ATCG |
+| k | CCCG | F | TAGA | Z | ATGC |
+| l | CCGG | G | CAAT | 0 | TTAA |
+| m | GCAA | H | CATG | 1 | TTTT |
+| n | GCTT | I | CACG | 2 | TTCC |
+| o | GCCG | J | CAGT | 3 | TTGG |
+| p | GCGC | K | GAAG | 4 | CTAT |
+| q | ACTC | L | GATA | 5 | CTTG |
+| r | ACCG | M | GACG | 6 | CTCC |
+| s | TCTC | N | GAGG | 7 | CTGA |
+| t | TCCC | O | AATA | 8 | GTAT |
+| u | CCTT | P | AACG | 9 | GTTG |
+
    
 Pomembno je dodati da se vsak zapis oz. začetek DNA začne z start kodonom, ki je običajno kombinacija ATG dušikovih baz, pri čemer konec zapisa DNA naznanimo z stop kodonom, ki bo v našem primeru TAG kombinacija dušikovih baz. 
 
