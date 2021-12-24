@@ -609,5 +609,6 @@ if __name__ == '__main__':
     # Convert hash digest to DNA sequence and store it
     binaries = convert_hex_to_bin(hashes)
     #print_blocks(binaries)
+
     dna_hashes = convert_binary_to_dna(binaries)
     #print_blocks(dna_hashes)

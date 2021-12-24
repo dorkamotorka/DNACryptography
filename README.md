@@ -62,6 +62,12 @@ Tabela prestavlja preslikava:
 
 ![image](https://user-images.githubusercontent.com/48418580/145455912-35f58f66-00c9-4159-999d-deba0eb0a9a0.png)
 
+Kljub temu da je Huffmanovo enkodiranje tako učinkovito je precej nepraktično ko je potrebno tekst dekriptirati, saj je izredno težko določiti kateri črki sekvenca dušikovih baz pripada, saj posamezni črki pripada lahko med 1-5 dušikovih baz. 
+Enostavna rešitev bi bila da dodamo indekse, koliko dušikovih baz moramo upoštevati pri dekripiciji posamezne črke ampak je to precej nepraktično saj s tem podatkom napadalci lahko enostavno dešifrirajo tekst(ker je samo 128 simbolov v ASCII standardu).
+Zato enkodiranje prilagodimo in uporabimo za vsako črko 4 dušikove baze [2]:
+
+
+
    
 Pomembno je dodati da se vsak zapis oz. začetek DNA začne z start kodonom, ki je običajno kombinacija ATG dušikovih baz, pri čemer konec zapisa DNA naznanimo z stop kodonom, ki bo v našem primeru TAG kombinacija dušikovih baz. 
 
@@ -200,3 +206,4 @@ TODO
 ## References
 
 [1] https://web.stanford.edu/~kaleeg/chem32/biopol/
+[2] https://www.sciencedirect.com/science/article/pii/S187705091500109X

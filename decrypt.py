@@ -3,36 +3,44 @@
 import parse_sbox
 import random
 
-'''
 inv_he = {
-    'GC',
-    'TTA',
-    'GGA',
-    'TC',
-    'C',
-    'GTA',
-    'GTC',
-    'TG',
-    'AA',
-    'TTTA',
-    'GTT',
-    'TTTG',
-    'GGG',
-    'GTG',
-    'GGC',
-    'AT',
-    'AG',
-    'TTG',
-    'TA',
-    'GA',
-    'TTTCG',
-    'AC',
-    'GGT',
-    'TTC',
-    'TTTCA',
-    'TTTT',
+    'GC': 'a',
+    'TTA': 'b',
+    'GGA': 'c',
+    'TC': 'd',
+    'C': 'e',
+    'GTA': 'f',
+    'GTC': 'g',
+    'TG': 'h',
+    'AA': 'i',
+    'TTTA': 'j',
+    'GTT': 'y',
+    'TTTG': 'k',
+    'GGG': 'l',
+    'GTG': 'm',
+    'GGC': 'w',
+    'AT': 'n',
+    'AG': 'o',
+    'TTG': 'p',
+    'TA': 'r',
+    'GA': 't',
+    'TTTCG': 'q',
+    'AC': 's',
+    'GGT': 'u',
+    'TTC': 'v',
+    'TTTCA': 'z',
+    'TTTT': 'x',
 }
-'''
+
+def decode_from_blocks(blocks):
+    decoded = []
+    for b in blocks:
+        for k in sorted(inv_he, key=len, reverse=True):
+            b = b.replace(k, inv_he[k])
+        decoded.append(b)
+
+    return decoded
+
 
 inverse_sbox = parse_sbox.inverse_sbox
 # DNA base to binary
@@ -213,11 +221,6 @@ def inv_substitution(blocks):
 
     return sub_text
 
-'''
-def decode_from_blocks(blocks):
-    decoded = ''
-'''
-
 def print_blocks(blocks):
     for b in blocks:
         print(b)
@@ -236,33 +239,40 @@ def generate_round_keys(src):
 
 if __name__ == '__main__':
     # DNA cipher text
-    ct = ['TTTAGAATGAGCAACGCGAGCTGAAGACTGCG']
+    ct = ['GCACAAACAAATAATCTAAACACAATCATTCA']
     key = 1234
     round_keys = round_keys = generate_round_keys(key)
 
     # Convert DNA to binary
     binary = convert_dna_to_binary(ct)
-    print_blocks(binary)
+    #print_blocks(binary)
 
     # XOR with key
     xored = xor(binary, round_keys[0])
+    #print_blocks(xored)
 
     # Inverse permutation
     perm = inv_permutation(xored)
+    #print_blocks(perm)
 
     # Convert back to DNA
     rna = convert_binary_to_dna(perm)
+    #print_blocks(rna)
 
     # Change Timin to Uracil
     dna = change_timin_to_uracil(rna)
+    #print_blocks(dna)
 
     # Inverse tRNA and mRNA
     inv = inv_mrna_trna(dna)
+    #print_blocks(inv)
 
     # Inverse Substitution
     invsub = inv_substitution(inv)
-    print_blocks(invsub)
+    #print_blocks(invsub)
 
     # Remove padding
+    decoded = decode_from_blocks(invsub)
+    print_blocks(decoded)
 
     # Decode text
