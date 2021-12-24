@@ -1,5 +1,15 @@
 # DNA Kriptografija
 
+## Usage
+
+Encryption:
+
+	python encrypt.py <key[int]> <plain-text[string]>
+
+Decryption:
+
+	python decrypt.py <key[int]> <cipher-text[string]>
+
 ## Biologija
 
 ### DNA (Deoksiribonukleinska kislina) 

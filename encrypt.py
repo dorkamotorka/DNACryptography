@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import sys
 import random
 import hashlib
 import parse_sbox
@@ -7,32 +8,33 @@ import parse_sbox
 sbox_parsed = parse_sbox.sbox 
 # Huffman Enkodiranje
 he = {
-    'a': 'GC',
-    'b': 'TTA',
-    'c': 'GGA',
-    'd': 'TC',
-    'e': 'C',
-    'f': 'GTA',
-    'g': 'GTC',
-    'h': 'TG',
-    'i': 'AA',
-    'j': 'TTTA',
-    'y': 'GTT',
-    'k': 'TTTG',
-    'l': 'GGG',
-    'm': 'GTG',
-    'w': 'GGC',
-    'n': 'AT',
-    'o': 'AG',
-    'p': 'TTG',
-    'r': 'TA',
-    't': 'GA',
-    'q': 'TTTCG',
-    's': 'AC',
-    'u': 'GGT',
-    'v': 'TTC',
-    'z': 'TTTCA',
-    'x': 'TTTT',
+    'a': 'ACAT',
+    'b': 'ACTG',
+    'c': 'ACCC',
+    'd': 'ACGA',
+    'e': 'TCAT',
+    'f': 'TCTG',
+    'g': 'TCCG',
+    'h': 'TCGT',
+    'i': 'CCAG',
+    'j': 'CCTA',
+    'y': 'AAAA',
+    'k': 'CCCG',
+    'l': 'CCGG',
+    'm': 'GCAA',
+    'w': 'GCTA',
+    'n': 'GCTT',
+    'o': 'GCCG',
+    'p': 'GCGC',
+    'r': 'ACCG',
+    't': 'TCCC',
+    'q': 'ACTC',
+    's': 'TCTC',
+    'u': 'CCTT',
+    'v': 'CCCC',
+    'z': 'AATT',
+    'x': 'GCCC',
+    '&': 'GGTG',
 }
 
 # Timin v Uracil, ostalo enako
@@ -213,8 +215,8 @@ sbox = {
         'TT': 'TCAC',
     },
     'CA':{
-        'AA': 'CTTC',	
-        'AG': 'AACT',
+        'AA': 'TATC',	
+        'AG': 'AATA',
         'AC': 'AGAT',
         'AT': 'TGTA',
         'GA': 'GGTT',
@@ -564,16 +566,16 @@ def convert_hex_to_bin(blocks):
     return binaries
 
 if __name__ == '__main__':
-    string = "Zapadeljeprvisa"
+    string = sys.argv[2]
     #print(string)
-    key = 1234 # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
+    key = int(sys.argv[1]) # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
     round_keys = generate_round_keys(key)
     #print(round_keys)
     blocks = encode_into_blocks(string)
 
     # Padding
     padded_blocks = padding(blocks)
-    print_blocks(padded_blocks)
+    #print_blocks(padded_blocks)
 
     # Substitucija
     sub_text = substitution(padded_blocks)
@@ -600,7 +602,7 @@ if __name__ == '__main__':
     #print_blocks(xored)
 
     dna_text = convert_binary_to_dna(xored)
-    #print_blocks(dna_text)
+    print_blocks(dna_text)
 
     # Compute hash from key and cipher text to provide integrity
     hashes = compute_hashes(dna_text, key)

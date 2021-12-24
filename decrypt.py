@@ -2,42 +2,49 @@
 
 import parse_sbox
 import random
+import sys
 
 inv_he = {
-    'GC': 'a',
-    'TTA': 'b',
-    'GGA': 'c',
-    'TC': 'd',
-    'C': 'e',
-    'GTA': 'f',
-    'GTC': 'g',
-    'TG': 'h',
-    'AA': 'i',
-    'TTTA': 'j',
-    'GTT': 'y',
-    'TTTG': 'k',
-    'GGG': 'l',
-    'GTG': 'm',
-    'GGC': 'w',
-    'AT': 'n',
-    'AG': 'o',
-    'TTG': 'p',
-    'TA': 'r',
-    'GA': 't',
-    'TTTCG': 'q',
-    'AC': 's',
-    'GGT': 'u',
-    'TTC': 'v',
-    'TTTCA': 'z',
-    'TTTT': 'x',
+    'ACAT': 'a',
+    'ACTG': 'b',
+    'ACCC': 'c',
+    'ACGA': 'd',
+    'TCAT': 'e',
+    'TCTG': 'f',
+    'TCCG': 'g',
+    'TCGT': 'h',
+    'CCAG': 'i',
+    'CCTA': 'j',
+    'AAAA': 'y',
+    'CCCG': 'k',
+    'CCGG': 'l',
+    'GCAA': 'm',
+    'GCTA': 'w',
+    'GCTT': 'n',
+    'GCCG': 'o',
+    'GCGC': 'p',
+    'ACCG': 'r',
+    'TCCC': 't',
+    'ACTC': 'q',
+    'TCTC': 's',
+    'CCTT': 'u',
+    'CCCC': 'v',
+    'AATT': 'z',
+    'GCCC': 'x',
+    'GGTG': '&',
 }
 
 def decode_from_blocks(blocks):
     decoded = []
-    for b in blocks:
-        for k in sorted(inv_he, key=len, reverse=True):
-            b = b.replace(k, inv_he[k])
-        decoded.append(b)
+    for pb in blocks:
+        tmp = ''
+        tmp2 = ''
+        for b in pb:
+            tmp += b
+            if len(tmp) == 4:
+                tmp2 += inv_he[tmp]
+                tmp = ''
+        decoded.append(tmp2)
 
     return decoded
 
@@ -237,10 +244,25 @@ def generate_round_keys(src):
 
     return round_keys
 
+def remove_padding(blocks):
+    unpadded = []
+    for pb in blocks:
+        tmp = ''
+        tmp2 = ''
+        for b in pb:
+            tmp += b
+            if len(tmp) == 4:
+                if tmp != 'GGTG':
+                    tmp2 += tmp
+                tmp = ''
+        unpadded.append(tmp2)
+
+    return unpadded
+
 if __name__ == '__main__':
     # DNA cipher text
-    ct = ['GCACAAACAAATAATCTAAACACAATCATTCA']
-    key = 1234
+    ct = [sys.argv[2]]
+    key = int(sys.argv[1])
     round_keys = round_keys = generate_round_keys(key)
 
     # Convert DNA to binary
@@ -272,7 +294,9 @@ if __name__ == '__main__':
     #print_blocks(invsub)
 
     # Remove padding
-    decoded = decode_from_blocks(invsub)
-    print_blocks(decoded)
+    unpadded = remove_padding(invsub)
+    #print_blocks(unpadded)
 
     # Decode text
+    decoded = decode_from_blocks(unpadded)
+    print_blocks(decoded)
