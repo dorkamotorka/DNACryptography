@@ -565,7 +565,7 @@ def convert_hex_to_bin(blocks):
 
 if __name__ == '__main__':
     string = "Zapadeljeprvisa"
-    print(string)
+    #print(string)
     key = 1234 # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
     round_keys = generate_round_keys(key)
     #print(round_keys)
@@ -573,7 +573,7 @@ if __name__ == '__main__':
 
     # Padding
     padded_blocks = padding(blocks)
-    #print_blocks(padded_blocks)
+    print_blocks(padded_blocks)
 
     # Substitucija
     sub_text = substitution(padded_blocks)
@@ -600,7 +600,7 @@ if __name__ == '__main__':
     #print_blocks(xored)
 
     dna_text = convert_binary_to_dna(xored)
-    print_blocks(dna_text)
+    #print_blocks(dna_text)
 
     # Compute hash from key and cipher text to provide integrity
     hashes = compute_hashes(dna_text, key)
@@ -610,4 +610,4 @@ if __name__ == '__main__':
     binaries = convert_hex_to_bin(hashes)
     #print_blocks(binaries)
     dna_hashes = convert_binary_to_dna(binaries)
-    print_blocks(dna_hashes)
+    #print_blocks(dna_hashes)

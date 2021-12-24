@@ -1,6 +1,38 @@
 #!/usr/bin/env python
 
 import parse_sbox
+import random
+
+'''
+inv_he = {
+    'GC',
+    'TTA',
+    'GGA',
+    'TC',
+    'C',
+    'GTA',
+    'GTC',
+    'TG',
+    'AA',
+    'TTTA',
+    'GTT',
+    'TTTG',
+    'GGG',
+    'GTG',
+    'GGC',
+    'AT',
+    'AG',
+    'TTG',
+    'TA',
+    'GA',
+    'TTTCG',
+    'AC',
+    'GGT',
+    'TTC',
+    'TTTCA',
+    'TTTT',
+}
+'''
 
 inverse_sbox = parse_sbox.inverse_sbox
 # DNA base to binary
@@ -124,6 +156,16 @@ def convert_binary_to_dna(blocks):
 
     return dna_text
 
+def inv_mrna_trna(blocks):
+    perm = []
+    for sb in blocks:
+        tmp = ''
+        for c in sb:
+            tmp += inv_mRNA[inv_tRNA[c]]
+        perm.append(tmp)
+
+    return perm
+
 def convert_dna_to_binary(blocks):
     binary_text = []
     for p in blocks:
@@ -131,6 +173,8 @@ def convert_dna_to_binary(blocks):
         for c in p:
             tmp += binary[c]
         binary_text.append(tmp)
+
+    return binary_text
 
 def xor(blocks, key):
     xored = []
@@ -153,24 +197,71 @@ def inv_permutation(blocks):
 
     return perm
 
+def inv_substitution(blocks):
+    sub_text = []
+    for pb in blocks:
+        tmp = ''
+        tmp2 = ''
+        for b in pb:
+            tmp += b
+            if len(tmp) == 4:
+                # prva dva znaka row
+                # druga dva znaka column
+                tmp2 += inverse_sbox[tmp[0:2]][tmp[2:4]]
+                tmp = ''
+        sub_text.append(tmp2)
+
+    return sub_text
+
+'''
+def decode_from_blocks(blocks):
+    decoded = ''
+'''
+
+def print_blocks(blocks):
+    for b in blocks:
+        print(b)
+
+def generate_round_keys(src):
+    num_keys = 16
+    round_keys = []
+    for k in range(num_keys):
+        random.seed(src + k)
+        x = random.getrandbits(64)
+        bino = '{0:0{1}b}'.format(x,64)
+        assert len(bino) == 64
+        round_keys.append(bino)
+
+    return round_keys
 
 if __name__ == '__main__':
     # DNA cipher text
-    ct = 'TTTAGAATGAGCAACGCGAGCTGAAGACTGCG'
+    ct = ['TTTAGAATGAGCAACGCGAGCTGAAGACTGCG']
+    key = 1234
+    round_keys = round_keys = generate_round_keys(key)
 
     # Convert DNA to binary
+    binary = convert_dna_to_binary(ct)
+    print_blocks(binary)
 
     # XOR with key
+    xored = xor(binary, round_keys[0])
 
     # Inverse permutation
+    perm = inv_permutation(xored)
 
     # Convert back to DNA
+    rna = convert_binary_to_dna(perm)
 
     # Change Timin to Uracil
+    dna = change_timin_to_uracil(rna)
 
     # Inverse tRNA and mRNA
+    inv = inv_mrna_trna(dna)
 
     # Inverse Substitution
+    invsub = inv_substitution(inv)
+    print_blocks(invsub)
 
     # Remove padding
 
