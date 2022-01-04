@@ -31,7 +31,7 @@ inv_he = {
     'CCCC': 'v',
     'AATT': 'z',
     'GCCC': 'x',
-    'GGTG': '&',
+    'GGGG': '',
 }
 
 def decode_from_blocks(blocks):
@@ -265,37 +265,40 @@ if __name__ == '__main__':
     key = int(sys.argv[1])
     round_keys = round_keys = generate_round_keys(key)
 
-    # Convert DNA to binary
-    binary = convert_dna_to_binary(ct)
-    #print_blocks(binary)
+    for r in reversed(round_keys):
+        # Convert DNA to binary
+        bina = convert_dna_to_binary(ct)
+        #print_blocks(bin)
 
-    # XOR with key
-    xored = xor(binary, round_keys[0])
-    #print_blocks(xored)
+        # XOR with key
+        xored = xor(bina, r)
+        #print_blocks(xored)
 
-    # Inverse permutation
-    perm = inv_permutation(xored)
-    #print_blocks(perm)
+        # Inverse permutation
+        perm = inv_permutation(xored)
+        #print_blocks(perm)
 
-    # Convert back to DNA
-    rna = convert_binary_to_dna(perm)
-    #print_blocks(rna)
+        # Convert back to DNA
+        rna = convert_binary_to_dna(perm)
+        #print_blocks(rna)
 
-    # Change Timin to Uracil
-    dna = change_timin_to_uracil(rna)
-    #print_blocks(dna)
+        # Change Timin to Uracil
+        dna = change_timin_to_uracil(rna)
+        #print_blocks(dna)
 
-    # Inverse tRNA and mRNA
-    inv = inv_mrna_trna(dna)
-    #print_blocks(inv)
+        # Inverse tRNA and mRNA
+        inv = inv_mrna_trna(dna)
+        #print_blocks(inv)
 
-    # Inverse Substitution
-    invsub = inv_substitution(inv)
-    #print_blocks(invsub)
+        # Inverse Substitution
+        invsub = inv_substitution(inv)
+        #print_blocks(invsub)
+
+        ct = invsub
 
     # Remove padding
     unpadded = remove_padding(invsub)
-    #print_blocks(unpadded)
+    print_blocks(unpadded)
 
     # Decode text
     decoded = decode_from_blocks(unpadded)

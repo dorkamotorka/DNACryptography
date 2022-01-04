@@ -34,7 +34,7 @@ he = {
     'v': 'CCCC',
     'z': 'AATT',
     'x': 'GCCC',
-    '&': 'GGTG',
+    '': 'GGGG',
 }
 
 # Timin v Uracil, ostalo enako
@@ -445,7 +445,7 @@ def padding(blocks):
         if len(b) < 32:
             m = 32 - len(b)
             for _ in range(m):
-                b += 'C'
+                b += 'G'
         padded_blocks.append(b)
 
     return padded_blocks
@@ -577,36 +577,38 @@ if __name__ == '__main__':
     padded_blocks = padding(blocks)
     #print_blocks(padded_blocks)
 
-    # Substitucija
-    sub_text = substitution(padded_blocks)
-    #print_blocks(sub_text)
+    for r in round_keys:
+        # Substitucija
+        sub_text = substitution(padded_blocks)
+        #print_blocks(sub_text)
 
-    # Permutacija
-    perm = mrna_trna(sub_text)
-    #print_blocks(perm)
+        # Permutacija
+        perm = mrna_trna(sub_text)
+        #print_blocks(perm)
 
-    # Za DNA sekvenco zamenjaj Uracil z Timinom
-    dna = change_uracil_to_timin(perm)
-    #print_blocks(dna)
+        # Za DNA sekvenco zamenjaj Uracil z Timinom
+        dna = change_uracil_to_timin(perm)
+        #print_blocks(dna)
 
-    # Convert text to binary
-    binary_text = convert_dna_to_binary(dna)
-    #print_blocks(binary_text)
+        # Convert text to binary
+        binary_text = convert_dna_to_binary(dna)
+        #print_blocks(binary_text)
 
-    # Permutacija binary - mRNA + tRNA samo vrne nasprotni par (back-and-forth)
-    perm_bin = permutation(binary_text)
-    #print_blocks(perm_bin)
+        # Permutacija binary - mRNA + tRNA samo vrne nasprotni par (back-and-forth)
+        perm_bin = permutation(binary_text)
+        #print_blocks(perm_bin)
 
-    # XOR
-    xored = xor(perm_bin, round_keys[0])
-    #print_blocks(xored)
+        # XOR
+        xored = xor(perm_bin, r)
+        #print_blocks(xored)
 
-    dna_text = convert_binary_to_dna(xored)
+        dna_text = convert_binary_to_dna(xored)
+        padded_blocks = dna_text
+
     print_blocks(dna_text)
-
     # Compute hash from key and cipher text to provide integrity
     hashes = compute_hashes(dna_text, key)
-    #print_blocks(hashes)
+    print_blocks(hashes)
 
     # Convert hash digest to DNA sequence and store it
     binaries = convert_hex_to_bin(hashes)
