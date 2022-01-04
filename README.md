@@ -231,9 +231,20 @@ TODO
 
 ## Test difuzije 
 
-Sprememba ene izmed črke vhodnega teksta, bi morala vplivati na vse vrednosti izhoda.
+Sprememba ene izmed črke vhodnega teksta, vpliva na vse vrednosti izhoda.
 
-TODO
+	pirsing -> ACCCACCCTACGACGAAAAAATATAGGTCGAC
+	pissing -> ACGGTCAAATCTGTATGCCGCACATCACGAGT
+	kissing -> CAGACAGATGAGACACACTAAAATGTCGGCAT
+
+## Test konfuzije
+
+Nobene zveze med ključem in besedilom, torej če v ključu spremenimo en znak, bi to moralo vplivati na celotno zašifrirano besedilo.
+
+Obakrat zašifriramo besedo cokolada:
+
+	Ključ "1111" -> GGAATCTTGGCTTTCCGTAATCTGAGTCCTCC
+	Ključ "1211" -> CGCATAGGACTTTTTAGAGCGAACACCGGTTG
 
 ## References
 
