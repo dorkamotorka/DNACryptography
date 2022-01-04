@@ -248,5 +248,5 @@ Obakrat zašifriramo besedo cokolada:
 
 ## References
 
-[1] https://web.stanford.edu/~kaleeg/chem32/biopol/
+[1] https://web.stanford.edu/~kaleeg/chem32/biopol/ <br>
 [2] https://www.sciencedirect.com/science/article/pii/S187705091500109X
