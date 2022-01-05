@@ -24,7 +24,7 @@ if __name__ == '__main__':
     print("Corrected = " + str(ct_corrected))
 
     if ct_corrected != ct:
-        raise Exception("[Error] : " + str(ct_corrected) + " != " + str(ct_mutated))
+        raise Exception("[Error] : " + str(ct_corrected) + " != " + str(ct))
 
 
     # Set ct to its correct value.
