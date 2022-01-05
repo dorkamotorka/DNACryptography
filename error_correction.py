@@ -85,5 +85,5 @@ if __name__ == '__main__':
 
     #Error check.
     if ct_corrected != ct:
-        raise Exception("[Error] : " + str(ct_corrected) + " != " + str(ct_mutated))
+        raise Exception("[Error] : " + str(ct_corrected) + " != " + str(ct))
 
