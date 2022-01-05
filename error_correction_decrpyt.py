@@ -1,9 +1,6 @@
 from decrypt import *
 from error_correction import *
-import hashlib
 import mutations
-import itertools
-
 
 if __name__ == '__main__':
     # DNA cipher text
