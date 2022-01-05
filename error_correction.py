@@ -60,8 +60,8 @@ def error_correction(ct, hash_blocks, key, m = 3):
         
 
 if __name__ == '__main__':
-    #Compute hash blocks of size from encrypted text -> dna_text
-    dna_text = ["TAGTCCGATTAGTCAAGTCAGTCCTT"]
+    #Compute hash blocks of size m from encrypted text.
+    dna_text = ["TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTG"]
     KEY = 12
     M   = 3
     hash_blocks = compute_hash_blocks(dna_text, key = KEY, m = M)
@@ -72,16 +72,18 @@ if __name__ == '__main__':
     print("Original  = " + str(ct))
 
     # Apply random mutation.
+    NUM_OF_MUTATIONS = 6
     ct_mutated = [] 
     for block in dna_text:
-        ct_mutated.append(mutations.mutatate_nucleotides(block))
+        ct_mutated.append(mutations.mutatate_nucleotides(block, num_mutations = NUM_OF_MUTATIONS))
 
     print("Mutated   = " + str(ct_mutated))
 
-    # Attempt to correct the error.
+    # Correct the error.
     ct_corrected = error_correction(ct_mutated, hash_blocks, key = KEY, m = M)
     print("Corrected = " + str(ct_corrected))
 
-    #Error check
-    print(ct_corrected == ct)
+    #Error check.
+    if ct_corrected != ct:
+        raise Exception("[Error] : " + str(ct_corrected) + " != " + str(ct_mutated))
 
