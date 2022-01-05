@@ -220,8 +220,6 @@ To odpre novo razmišljanje, namreč zagotoviti moramo da če pride do spontanih
 
 ## Spontane genske mutacije
 
-TODO
-
 - Zamenjava baze (analogno se dogodi v električnih vezjih ti. bit-flip)
 - Mutacija kodonov (Izbrisan ali dodan nukleotid, spremeni celotno sekvenco nukleotidov, kateri so po tri spadali h kodonom)
 
