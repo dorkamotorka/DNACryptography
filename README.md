@@ -72,7 +72,6 @@ Tabela prestavlja preslikava:
 
 ![image](https://user-images.githubusercontent.com/48418580/145455912-35f58f66-00c9-4159-999d-deba0eb0a9a0.png)
 
-<<<<<<< HEAD
 Kljub temu da je Huffmanovo enkodiranje tako učinkovito je precej nepraktično ko je potrebno tekst dekriptirati, saj je izredno težko določiti kateri črki sekvenca dušikovih baz pripada, saj posamezni črki pripada lahko med 1-5 dušikovih baz. 
 Enostavna rešitev bi bila da dodamo indekse, koliko dušikovih baz moramo upoštevati pri dekripiciji posamezne črke ampak je to precej nepraktično saj s tem podatkom napadalci lahko enostavno dešifrirajo tekst(ker je samo 128 simbolov v ASCII standardu).
 Zato enkodiranje prilagodimo in uporabimo za vsako črko 4 dušikove baze [2]:
@@ -225,7 +224,6 @@ To odpre novo razmišljanje, namreč zagotoviti moramo da če pride do spontanih
 
 ## Zaznava in popravek genskih mutacij
 
-TODO
 - hash vsakih npr. 20 dusikovih baz (naredi optimalno, saj nato shiftanje baz bo 4^m)
 - z hashom zaznaj da se je sekvenca spremenila 
 - Če zaznaš da je določen del stranda spremenjen, potem shiftaj baze in preverjaj če vrne isti hash - s tem si popravil strand
