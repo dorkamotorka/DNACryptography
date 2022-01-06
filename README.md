@@ -239,7 +239,6 @@ zapisa redke.
 
 Alternative pristop bi bilo reproduciranje genskega zapisa in izbor najbolj pogostega niza na območju napake.
 
-	example:
 	m = 3
 	num_of_mutations = 6
 
