@@ -219,14 +219,33 @@ To odpre novo razmišljanje, namreč zagotoviti moramo da če pride do spontanih
 
 ## Spontane genske mutacije
 
+Ker vedno obstaja verjetnost mutacije genskega zapisa, dodamo funkcionalnost simuliranja genskih mutaciji.
+Konkretno izpostavimo dva tipa mutacij.
+
 - Zamenjava baze (analogno se dogodi v električnih vezjih ti. bit-flip)
 - Mutacija kodonov (Izbrisan ali dodan nukleotid, spremeni celotno sekvenco nukleotidov, kateri so po tri spadali h kodonom)
 
 ## Zaznava in popravek genskih mutacij
 
-- hash vsakih npr. 20 dusikovih baz (naredi optimalno, saj nato shiftanje baz bo 4^m)
-- z hashom zaznaj da se je sekvenca spremenila 
-- Če zaznaš da je določen del stranda spremenjen, potem shiftaj baze in preverjaj če vrne isti hash - s tem si popravil strand
+Iz kriptiranega genskega zapisamo izračunamo hash za vsakih m nukleotidov.
+Preden se lotimo dekripcije genskega zapisa, simuliramo napako oz. mutacijo pri kateri se baza zamenja.
+Mutacijo detektiramo z ponovnim izračunom hash-a za vsakih m nukleotidov. V primeru ko se izracuni hash ne ujema z originalnim
+hashom vemo, da je na tem mestu prišlo do napake. Napako odpravimo z racunanjem vseh kombinacij niza "ATGC" dolzine m in racunanjem hasha
+dokler se ta ne ujema z originalnim hashom. Napako v genskem zapisu odpravimo.
+
+Vrednost parametra m nastavimo na 3, zavedamo se da je stevilo zahtevanih shiftov enako 4^m, za vsak odsek kjer do napake pride. 
+Torej v primeru ko je mutiran vsak kodon, moramo izracunati (4 ^ 3) * (len / 3) kombinacij. Zanasamo se na dejstvo da so mutacije genskega
+zapisa redke. 
+
+Alternative pristop bi bilo reproduciranje genskega zapisa in izbor najbolj pogostega niza na območju napake.
+
+	example:
+	m = 3
+	num_of_mutations = 6
+
+	Original  = 'TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTGTGCCCAATTTATCGATGG'
+	Mutated   = 'AAGTCCGATTAGTTAAGTGAGTCCTTTTGTGCCTGAGCCCAATTTATGGATGG'
+	Corrected = 'TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTGTGCCCAATTTATCGATGG'
 
 ## Test difuzije 
 
