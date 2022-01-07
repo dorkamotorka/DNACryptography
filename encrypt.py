@@ -616,3 +616,5 @@ if __name__ == '__main__':
 
     dna_hashes = convert_binary_to_dna(binaries)
     #print_blocks(dna_hashes)
+
+

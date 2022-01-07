@@ -72,7 +72,6 @@ Tabela prestavlja preslikava:
 
 ![image](https://user-images.githubusercontent.com/48418580/145455912-35f58f66-00c9-4159-999d-deba0eb0a9a0.png)
 
-<<<<<<< HEAD
 Kljub temu da je Huffmanovo enkodiranje tako učinkovito je precej nepraktično ko je potrebno tekst dekriptirati, saj je izredno težko določiti kateri črki sekvenca dušikovih baz pripada, saj posamezni črki pripada lahko med 1-5 dušikovih baz. 
 Enostavna rešitev bi bila da dodamo indekse, koliko dušikovih baz moramo upoštevati pri dekripiciji posamezne črke ampak je to precej nepraktično saj s tem podatkom napadalci lahko enostavno dešifrirajo tekst(ker je samo 128 simbolov v ASCII standardu).
 Zato enkodiranje prilagodimo in uporabimo za vsako črko 4 dušikove baze [2]:
@@ -220,22 +219,51 @@ To odpre novo razmišljanje, namreč zagotoviti moramo da če pride do spontanih
 
 ## Spontane genske mutacije
 
-TODO
+Ker vedno obstaja verjetnost mutacije genskega zapisa, dodamo funkcionalnost simuliranja genskih mutaciji.
+Konkretno izpostavimo dva tipa mutacij.
+
+- Zamenjava baze (analogno se dogodi v električnih vezjih ti. bit-flip)
+- Mutacija kodonov (Izbrisan ali dodan nukleotid, spremeni celotno sekvenco nukleotidov, kateri so po tri spadali h kodonom)
 
 ## Zaznava in popravek genskih mutacij
 
-TODO
-- hash vsakih npr. 20 dusikovih baz (naredi optimalno, saj nato shiftanje baz bo 4^m)
-- z hashom zaznaj da se je sekvenca spremenila 
-- Če zaznaš da je določen del stranda spremenjen, potem shiftaj baze in preverjaj če vrne isti hash - s tem si popravil strand
+Iz kriptiranega genskega zapisamo izračunamo hash za vsakih m nukleotidov.
+Preden se lotimo dekripcije genskega zapisa, simuliramo napako oz. mutacijo pri kateri se baza zamenja.
+Mutacijo detektiramo z ponovnim izračunom hash-a za vsakih m nukleotidov. V primeru ko se izracuni hash ne ujema z originalnim
+hashom vemo, da je na tem mestu prišlo do napake. Napako odpravimo z racunanjem vseh kombinacij niza "ATGC" dolzine m in racunanjem hasha
+dokler se ta ne ujema z originalnim hashom. Napako v genskem zapisu odpravimo.
+
+Vrednost parametra m nastavimo na 3, zavedamo se da je stevilo zahtevanih shiftov enako 4^m, za vsak odsek kjer do napake pride. 
+Torej v primeru ko je mutiran vsak kodon, moramo izracunati (4 ^ 3) * (len / 3) kombinacij. Zanasamo se na dejstvo da so mutacije genskega
+zapisa redke. 
+
+Alternative pristop bi bilo reproduciranje genskega zapisa in izbor najbolj pogostega niza na območju napake.
+
+	m = 3
+	num_of_mutations = 6
+
+	Original  = 'TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTGTGCCCAATTTATCGATGG'
+	Mutated   = 'AAGTCCGATTAGTTAAGTGAGTCCTTTTGTGCCTGAGCCCAATTTATGGATGG'
+	Corrected = 'TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTGTGCCCAATTTATCGATGG'
 
 ## Test difuzije 
 
-Sprememba ene izmed črke vhodnega teksta, bi morala vplivati na vse vrednosti izhoda.
+Sprememba ene izmed črke vhodnega teksta, vpliva na vse vrednosti izhoda.
 
-TODO
+	pirsing -> ACCCACCCTACGACGAAAAAATATAGGTCGAC
+	pissing -> ACGGTCAAATCTGTATGCCGCACATCACGAGT
+	kissing -> CAGACAGATGAGACACACTAAAATGTCGGCAT
+
+## Test konfuzije
+
+Nobene zveze med ključem in besedilom, torej če v ključu spremenimo en znak, bi to moralo vplivati na celotno zašifrirano besedilo.
+
+Obakrat zašifriramo besedo cokolada:
+
+	Ključ "1111" -> GGAATCTTGGCTTTCCGTAATCTGAGTCCTCC
+	Ključ "1211" -> CGCATAGGACTTTTTAGAGCGAACACCGGTTG
 
 ## References
 
-[1] https://web.stanford.edu/~kaleeg/chem32/biopol/
+[1] https://web.stanford.edu/~kaleeg/chem32/biopol/ <br>
 [2] https://www.sciencedirect.com/science/article/pii/S187705091500109X
