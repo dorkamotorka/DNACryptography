@@ -106,7 +106,7 @@ Pomembno je dodati da se vsak zapis oz. začetek DNA začne z start kodonom, ki 
 
 Zaradi same narave besedil in procesa Huffmanovega enkodiranja, ki eni črki lahko pridedi kombinacijo več dušikovih baz, je potrebno pred enkriptiranjem poskrbeti da je dolžina DNA sekvence posameznega bloka enaka 32. 
 To pa zato, ker vsaki bazi pripadata dva bita(torej dolžnina sekvence bitov bo enaka 64) in ker bomo uporabljali 8-bitne substitucijske škatle (S-box). 
-Če pogoju besedilo ne zadosti na koncu besedila dopolnimo verigo z Citozinom(C), saj so raziskave pokazale da je le ta najbolj odporen na spontane genske napake [1].
+Če pogoju besedilo ne zadosti na koncu besedila dopolnimo verigo z Gvaninom(G), saj so raziskave pokazale da je le ta najbolj odporen na spontane genske napake [1].
 
 ## SP Mreža (ang. SPN)
 
