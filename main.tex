@@ -1,0 +1,446 @@
+%%%%%%%%%%%%%%%%%%%%%%%% editor.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% sample root file for the contributions of a "contributed volume"
+%
+% Use this file as a template for your own input.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Springer %%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% RECOMMENDED %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass[graybox, envcountchap]{svmult}
+
+% choose options for [] as required from the list
+% in the Reference Guide
+
+\usepackage{mathptmx}        % selects Times Roman as basic font
+\usepackage{helvet}          % selects Helvetica as sans-serif font
+\usepackage{courier}         % selects Courier as typewriter font
+%\usepackage{type1cm}        % activate if the above 3 fonts are 
+% not available on your system
+
+\usepackage{makeidx}         % allows index generation
+\usepackage{graphicx}        % standard LaTeX graphics tool
+% when including figure files
+\usepackage{hyperref}
+\usepackage{epsfig}
+\graphicspath{{./}}
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+\usepackage{epstopdf}
+
+
+\usepackage{amsmath}
+\usepackage{physics}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{amssymb}
+
+\usepackage{graphicx}
+\usepackage{url}
+\usepackage{subcaption}
+\usepackage{multirow}
+\usepackage{amsmath}
+
+\usepackage{epstopdf}
+\usepackage{comment}
+\usepackage{multirow}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+
+% see the list of further useful packages in the Reference Guide
+
+\makeindex             % used for the subject index
+                       % please use the style svind.ist with
+                       % your makeindex program
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Added by Overleaf to facilitate author contributions in folders
+\usepackage{import}
+
+
+
+\newif\ifslo
+\slotrue
+%\slofalse
+
+\ifslo
+\usepackage[utf8]{inputenc}
+\usepackage[slovene]{babel}
+\usepackage{float}
+\newcommand{\fig}{Slika~}
+\newcommand{\figs}{Slike~}
+\newcommand{\eq}{Enačba~}
+\newcommand{\eqs}{Enačbe~}
+\newcommand{\tab}{Tabela~}
+\newcommand{\tabs}{Tabele~}
+\newcommand{\sect}{Poglavje~}
+\newcommand{\sects}{Poglavja~}
+\newcommand{\eng}[1]{(angl.~\emph{#1})}
+
+\else
+
+\newcommand{\fig}{Fig.~}
+\newcommand{\figs}{Figs.~}
+\newcommand{\eq}{Equation~}
+\newcommand{\eqs}{Equations~}
+\newcommand{\tab}{Table~}
+\newcommand{\tabs}{Tables~}
+\newcommand{\sect}{Section~}
+\newcommand{\sects}{Sections~}
+
+\fi
+
+\begin{document}
+
+\title{DNA Kriptografija}
+% Use \titlerunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\author{Teodor Janez Podobnik, Matevž Morato, Matjaž Muc}
+% Use \authorrunning{Short Title} for an abbreviated version of
+% your contribution title if the original one is too long
+\institute{Matevž Morato \at Fakulteta za računalništvo in information, Večna pot 113, 1000 Ljubljana \email{mm9975@studnet.uni-lj.si}
+\and Matjaž Muc \at Fakulteta za računalništvo in information, Večna pot 113, 1000 Ljubljana \email{mm1706@student.uni-lj.si}
+\and Teodor Janez Podobnik \at Fakulteta za računalništvo in information, Večna pot 113, 1000 Ljubljana \email{tp7220@student.uni-lj.si}}
+%
+% Use the package "url.sty" to avoid
+% problems with special characters
+% used in your e-mail or web address
+%
+\maketitle
+
+\abstract{ V okviru seminarja smo se osredotočili na optimizacijo subtitucijsko permutacijske mreže za delo z štirimi osnovnimi dušikovimi bazami v DNA. Zapis podatkov v DNA verigi smo dopolnili z algoritmom za zaznavanje in odpravljanje napak, ki so posledica genskih mutacij strukture.}
+
+\section{Uvod}
+\label{g01:sec:1}
+
+Dandanes število podatkov, ki jih je potrebno zanesljivo shraniti raste eksponento. Shranjevanje podatkov v DNA zapis prinaša prednost v primerjavi z shanjevanjem v digitalnih sistemih, saj je gostota najmanjše enote zapisa neprimerljivo manjša od bita shranjenega v pomnilniku našega računalnika. Konkretno je gostota zapisa vijačice približno \begin{math}10^6 Gbitov / inch ^2\end{math}, gostota zapisa na magnetnem disku pa dosega velikostni razred \begin{math}10 Gbitov / inch ^2\end{math}. V večini gre za osebne oziroma skrivne podatke, katerih lastnik ne želi izpostaviti javnosti. Da zagotovimo varnost zaupnih podatkov, je podatke potrebno najprej ustrezno zaščititi, preden jih shranimo. Osnova za zaščito so kriptografski algoritmi, ki zagotavljajo dostop zgolj osebi, ki ima skrivni ključ. Slabost zapisa podatkov v DNA zapis je podvrženost genskim mutacijam, ki so posledica bioloških procesov. 
+
+\newpage
+
+\noindent
+Osnovna ideja pri kriptografiji, je uporaba preverjenih algoritmov, z lastno implemtacijo lahko hitro pride do napake, ki ogorozi varnost podatkov. Temu primerno smo v sklopu seminarja naprej prevedli 64-bitno bločno subtitucijsko-permutacijsko mrežo (SPN) kriptografskega algoritma AES(Advanced Encryption Standard) za delo z štirimi osnovnimi dušikovimi bazami: Adenin(A), Timin(T), Gvanin(G), Citozin(C). Le to smo uporabili za enkripcijo ter dekripcijo, ki obdelata podatke na vhodu in izhodu v/iz podatkovne baze. Za voljo projekta predpostavimo, da je podatkovna baza zgrajena iz DNA verig, ki omogočajo zapis, prepis ter branje podatkov. Za zagotavljanje integritete shranjenih podatkov smo iz celotne sekvence dušikovih baz na vsake 3 izračunali hash. Bolj pogosto računanje hasha nam je kasneje pripomoglo, k učinkovitejšemu odpravljanju napak. 
+
+\section{Biološko ozadje}
+\subsection{DNA (Deoksiribonukleinska kislina)}
+DNA je mulekula, ki je nosilka genetske informacije v vseh živih organizmih. Ima obliko dvojne vijačnice, pri čemer se dve mulekuli ovijeta druga okrog druge, pri čemer se dušikove baze vežejo v parih. Adenin se vedno pari s timinom in citozin vedno z gvaninom.
+
+\subsection{Osnovni elementi DNA}
+Nukleotid je osnovna enota DNA, ki je sestavljena iz sladkorja, dušikove baze in fosfatne skupine. Kodon so trije pari nukleotidov (pari v dvojni vijačnici). Osnovni elementi, ki jih bomo uporabljali (analogno iz digitalnih vezjih) kot en-bit informacije so dušikove baze: Adenin(A), Gvanin(G), Citozin(C) in Timin(T).
+
+\subsection{mRNA}
+Je mulekula, ki širi oz. prepisuje genetsko informacijo iz DNA. Konceptno deluje tako, da v procesu prepisovanja(iz ene izmed verig dvojne vijačnice) mRNA tvori enoverižno molekulo, pri čemer Timin nadomesti z Uracilom, preostanek prebrane verige pa ostane enak. Torej če imamo sledečo dvojno vijačnico in mRNA, ki prebira:
+\begin{samepage}
+\begin{verbatim}
+A G G G A (zgornja veriga)
+| | | | | (vez med paroma)  DNA
+T C C C T (spodnja veriga)
+----------
+U C C C U (mRNA, ki prebere spodnjo verigo) 
+\end{verbatim}
+\end{samepage}
+
+\section{Huffmanovo kodiranje}
+ Kot pri vsakem izmed zapisov ali branju podatka iz pomnilnika ravno tako pri pomnenju z DNA obstaja možnost da pride do napake (spontane genske napake, UV žarki, toplota itd.). 
+ Pogoste napake so:
+\begin{itemize}
+  \item Zamenjava baze (analogno se dogodi v električnih vezjih ti. bit-flip)
+  \item Mutacija kodonov (Izbrisan ali dodan nukleotid, spremeni celotno sekvenco nukleotidov, kateri so po tri spadali h kodonom)
+\end{itemize}
+
+Raziskave so pokazale, da je pogostost napak, ki se lahko pripetijo določenemu tipu dušikove baze večji ali manjši od preostalih. Upoštevajoč to lastnost lahko v primeru teksta, pogostejše črke kot so (e,a,t ..) zapisujemo v kombinaciji dušikovih baz, ki so bolj zanesljive oz. je manjša verjetnost da pride do napak in s tem izboljšamo zanesljivost zapisa, branja in hrambe podatkov. To lastnost izkorišča Hufmanovo enkodiranje, ki ASCII vrednostim pogostejšim črkam pripisuje zanesljivejše kombinacije dušikovih baz.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{img/huffmanovo kodiranje.png}
+\caption{Huffmanova tabela}
+\label{fig:g0}
+\end{figure}
+
+Kljub temu da je Huffmanovo enkodiranje tako učinkovito je precej nepraktično ko je potrebno tekst dekriptirati, saj je izredno težko določiti kateri črki sekvenca dušikovih baz pripada, saj posamezni črki pripada lahko med 1-5 dušikovih baz. Enostavna rešitev bi bila da dodamo indekse, koliko dušikovih baz moramo upoštevati pri dekripiciji posamezne črke ampak s tem zmanjšamo varnost saj s tem podatkom napadalci lahko enostavno dešifrirajo tekst(ker je samo 128 simbolov v ASCII standardu). Zato enkodiranje prilagodimo in uporabimo za vsako črko 4 dušikove baze (Tabela \ref{stiricrkovna})
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+        a & ACAT & y & AAAA & \& & GGTG \\ \hline
+        b & ACTG & v & CCCC & Q & TATC \\ \hline
+        c & ACCC & w & GCTA & R & TACG \\ \hline
+        d & ACGA & x & GCCC & S & CATC \\ \hline
+        e & TCAT & z & AATT & T & CACC \\ \hline
+        f & TCTG & A & AACC & U & GATT \\ \hline
+        g & TCCG & B & AAGG & V & GACC \\ \hline
+        h & TCGT & C & TAAT & W & ATAA \\ \hline
+        i & CCAG & D & TATG & X & ATTT \\ \hline
+        j & CCTA & E & TACC & Y & ATCG \\ \hline
+        k & CCCG & F & TAGA & Z & ATGC \\ \hline
+        l & CCGG & G & CAAT & 0 & TTAA \\ \hline
+        m & GCAA & H & CATG & 1 & TTTT \\ \hline
+        n & GCTT & I & CACG & 2 & TTCC \\ \hline
+        o & GCCG & J & CAGT & 3 & TTGG \\ \hline
+        p & GCGC & K & GAAG & 4 & CTAT \\ \hline
+        q & ACTC & L & GATA & 5 & CTTG \\ \hline
+        r & ACCG & M & GACG & 6 & CTCC \\ \hline
+        s & TCTC & N & GAGG & 7 & CTGA \\ \hline
+        t & TCCC & O & AATA & 8 & GTAT \\ \hline
+        u & CCTT & P & AACG & 9 & GTTG \\ \hline
+    \end{tabular}
+    \caption{4 črkovna Huffmanova tabela}
+    \label{stiricrkovna}
+    \raggedleft
+\end{table}
+
+\section{Padding}
+Zaradi same narave besedil in procesa Huffmanovega enkodiranja, ki eni črki lahko priredi kombinacijo več dušikovih baz, je potrebno pred enkriptiranjem poskrbeti da je dolžina DNA sekvence posameznega bloka enaka 32. To pa zato, ker vsaki bazi pripadata dva bita(torej dolžnina sekvence bitov bo enaka 64) in ker bomo uporabljali 8-bitne substitucijske škatle (S-box). Če pogoju besedilo ne zadosti na koncu besedila dopolnimo verigo z Gvaninom(G), saj so raziskave pokazale da je le ta najbolj odporen na spontane genske napake.
+
+\section{SP Mreža}
+\label{g01:sec:2}
+
+Substitucijska-Permutacijska mreža krajše SP Mreža ali SPN je osnovna komponenta nekaterih glavnih enkripcijskih algoritmov kot so AES, DES in podobni. Glavne lastnosti SP mreže so predvsem enostavnost, hitrost ter učinkovitost. Kot že ime pove je sestavljena iz S-škatel (substitucija), P-škatel(permutacija) ter XOR operacije z ključem-kroga.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{img/arch.png}
+\caption{Prilagojena substitucijsko permutacijska mreža}
+\label{fig:g0}
+\end{figure}
+
+\newpage
+
+\subsection{S-škatla}
+\label{g01:subsec:1}
+Za substitucijsko škatlo obstaja standard, ki zagotavlja zadostno difuzijo ter konfuzijo teksta. Temu primerno vzamemo kar enako tabelo kot za AES, le da je prevedemo za substitucijo z dušikovimi bazami. Za dekripcijo potrebujemo še inverz S-škatle. 
+
+
+\begin{table}[!ht]
+    \begin{center}
+    \scalebox{0.75}{
+    \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        ~ & AA & AG & AC & AT & GA & GG & GC & GT & CA & CG & CC & CT & TA & TC & TG & TT \\ \hline
+        AA & GCAT & GTTA & GTGT & GTCT & TTAC & GCCT & GCTT & TAGG & ATAA & AAAG & GCGT & ACCT & TTTG & TCGT & CCCT & GTGC \\ \hline
+        AG & TACC & CAAC & TACG & GTTC & TTCC & GGCG & GAGT & TTAA & CCTC & TCGA & CCAC & CCTT & CGTA & CCGA & GTAC & TAAA \\ \hline
+        AC & CTGT & TTTC & CGAT & ACGC & ATGC & ATTT & TTGT & TATA & ATGA & CCGG & TGGG & TTAG & GTAG & TCCA & ATAG & AGGG \\ \hline
+        AT & AAGA & TAGT & ACAT & TAAT & AGCA & CGGC & AAGG & CGCC & AAGT & AGAC & CAAA & TGAC & TGCT & ACGT & CTAC & GTGG \\ \hline
+        GA & AACG & CAAT & ACTA & AGCC & AGCT & GCTG & GGCC & CCAA & GGAC & ATCT & TCGC & CTAT & ACCG & TGAT & ACTT & CAGA \\ \hline
+        GG & GGAT & TCAG & AAAA & TGTC & ACAA & TTTA & CTAG & GGCT & GCCC & TACT & CTTG & ATCG & GACC & GATA & GGCA & TATT \\ \hline
+        GC & TCAA & TGTT & CCCC & TTCT & GAAT & GATC & ATAT & CAGG & GAGG & TTCG & AAAC & GTTT & GGAA & ATTA & CGTT & CCCA \\ \hline
+        GT & GGAG & CCAT & GAAA & CATT & CGAC & CGTC & ATCA & TTGG & CTTA & CTGC & TCCC & ACAG & AGAA & TTTT & TTAT & TCAC \\ \hline
+        CA & TATC & AATA & AGAT & TGTA & GGTT & CGGT & GAGA & AGGT & TAGA & CCGT & GTTG & ATTC & GCGA & GGTC & AGCG & GTAT \\ \hline
+        CG & GCAA & CAAG & GATT & TCTA & ACAC & ACCC & CGAA & CACA & GAGC & TGTG & CTCA & AGGA & TCTG & GGTG & AACT & TCCT \\ \hline
+        CC & TGAA & ATAC & ATCC & AACC & GACG & AAGC & ACGA & GGTA & TAAC & TCAT & CCTA & GCAC & CGAG & CGGG & TGGA & GTCG \\ \hline
+        CT & TGGT & TACA & ATGT & GCTC & CATC & TCGG & GATG & CCCG & GCTA & GGGC & TTGA & TGCC & GCGG & GTCC & CCTG & AACA \\ \hline
+        TA & CTCC & GTCA & ACGG & ACTG & AGTA & CCGC & CTGA & TAGC & TGCA & TCTC & GTGA & AGTT & GACT & CTTC & CACT & CACC \\ \hline
+        TC & GTAA & ATTG & CTGG & GCGC & GACA & AAAT & TTGC & AATG & GCAG & ATGG & GGGT & CTCG & CAGC & TAAG & AGTC & CGTG \\ \hline
+        TG & TGAG & TTCA & CGCA & AGAG & GCCG & TCCG & CATG & CGGA & CGCT & AGTG & CAGT & TGCG & TATG & GGGG & ACCA & TCTT \\ \hline
+        TT & CATA & CCAG & CACG & AATC & CTTT & TGGC & GAAC & GCCA & GAAG & CGCG & ACTC & AATT & CTAA & GGGA & CTCT & AGGC \\ \hline
+    \end{tabular}
+    }
+    \caption{Rijndael S škatla}
+    \label{table 1}
+    \end{center}
+    \raggedleft
+\end{table}
+
+\begin{table}[!ht]
+    \begin{center}
+    \scalebox{0.75}{
+     \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|l|}
+    \hline
+        ~ & AA & AG & AC & AT & GA & GG & GC & GT & CA & CG & CC & CT & TA & TC & TG & TT \\ \hline
+        AA & GGAC & AACG & GCCC & TCGG & ATAA & ATGC & CCGG & ATCA & CTTT & GAAA & CCAT & CGTG & CAAG & TTAT & TCGT & TTCT \\ \hline
+        AG & GTTA & TGAT & ATCG & CAAC & CGCT & ACTT & TTTT & CAGT & ATGA & CATG & GAAT & GAGA & TAGA & TCTG & TGCG & TACT \\ \hline
+        AC & GGGA & GTCT & CGGA & ATAC & CCGC & TAAC & ACAT & ATTC & TGTG & GATA & CGGG & AACT & GAAC & TTCC & TAAT & GATG \\ \hline
+        AT & AACA & ACTG & CCAG & GCGC & ACCA & TCCG & ACGA & CTAC & GTGC & GGCT & CCAC & GACG & GCTC & CACT & TCAG & ACGG \\ \hline
+        GA & GTAC & TTCA & TTGC & GCGA & CAGC & GCCA & CGCA & AGGC & TCGA & CCGA & GGTA & TATA & GGTC & GCGG & CTGC & CGAC \\ \hline
+        GG & GCTA & GTAA & GACA & GGAA & TTTC & TGTC & CTCG & TCCC & GGTG & AGGG & GAGC & GGGT & CCGT & CATC & CGTC & CAGA \\ \hline
+        GC & CGAA & TCCA & CCCT & AAAA & CATA & CTTA & TCAT & AACC & TTGT & TGGA & GGCA & AAGG & CTCA & CTAT & GAGG & AAGC \\ \hline
+        GT & TCAA & ACTA & AGTG & CATT & TACC & ATTT & AATT & AAAC & TAAG & CCTT & CTTC & AAAT & AAAG & AGAT & CACC & GCCT \\ \hline
+        CA & ATCC & CGAG & AGAG & GAAG & GATT & GCGT & TCTA & TGCC & CGGT & TTAC & TATT & TATG & TTAA & CTGA & TGGC & GTAT \\ \hline
+        CG & CGGC & CCTA & GTGA & ACAC & TGGT & CCTC & ATGG & CAGG & TGAC & TTCG & ATGT & TGCA & AGTA & GTGG & TCTT & GCTG \\ \hline
+        CC & GAGT & TTAG & AGCC & GTAG & AGTC & ACCG & TAGG & CACG & GCTT & CTGT & GCAC & AATG & CCCC & AGCA & CTTG & AGCT \\ \hline
+        CT & TTTA & GGGC & ATTG & GACT & TAGC & TCAC & GTCG & ACAA & CGCC & TCCT & TAAA & TTTG & GTCA & TATC & GGCC & TTGA \\ \hline
+        TA & AGTT & TCTC & CCCA & ATAT & CACA & AAGT & TAGT & ATAG & CTAG & AGAC & AGAA & GGCG & ACGT & CAAA & TGTA & GGTT \\ \hline
+        TC & GCAA & GGAG & GTTT & CCCG & AGCG & CTGG & GACC & AATC & ACTC & TGGG & GTCC & CGTT & CGAT & TACG & CGTA & TGTT \\ \hline
+        TG & CCAA & TGAA & ATCT & GATC & CCTG & ACCC & TTGG & CTAA & TACA & TGCT & CTCT & ATTA & CAAT & GGAT & CGCG & GCAG \\ \hline
+        TT & AGGT & ACCT & AAGA & GTTG & CTCC & GTGT & TCGC & ACGC & TGAG & GCCG & AGGA & GCAT & GGGG & ACAG & AATA & GTTC \\ \hline
+    \end{tabular}
+    }
+    \caption{Rijndael S škatla}
+    \label{table 1}
+    \end{center}
+    \raggedleft
+\end{table}
+
+
+\subsection{P-škatla}
+\label{g01:subsec:2}
+
+Prvotno smo za permutacijo uporabili zgolj tRNA in mRNA proces, saj smo želeli uporabiti zgolj DNA procese(prevajanje in prepisovanje), ki so predvsem učinkoviti zaradi njihovega pararelnega izračuna oz. izvedbe. Izkazalo se je, da izbira zgolj teh dveh procesov ne zagotavlja dovoljšne difuzije vhodnih podatkov, torej v izhodnih zašifriranih podatkih so razvidni vzorci. Enacba 1.1 prikazuje proces permutacij s pomočjo tRNA in mRNA
+\begin{equation}
+\begin{split}
+\small 
+T \Longrightarrow U  \Longrightarrow A \Longrightarrow A \\
+A \Longrightarrow A  \Longrightarrow U \Longrightarrow T \\
+C \Longrightarrow C  \Longrightarrow G \Longrightarrow G \\
+G \Longrightarrow G  \Longrightarrow C \Longrightarrow C \\
+\end{split}
+\end{equation}
+
+\noindent
+Permutacijo smo izboljšali s pomočjo standarnega 64-bitnega P-boxa in njenim inverzom za potrebe dekripcije. Tabela 1.3 prikazuje indekse baz za pe. Naprimer na prvo mesto pride baza na 58 indeksu, na drugo mesto baza na 50 indeksu in tako naprej.
+
+%Če povzamemo iz opisa procesov tRNA in mRNA, za permutacijo posamezne %baze to pomeni:
+%
+%	T se prepiše v U se prevede v A se prepiše nazaj v A
+%	
+%	A se prepiše v A se prevede v U se prepiše nazaj v T
+%	
+%	C se prepiše v C se prevede v G se prepiše nazaj v G
+%	
+%	G se prepiše v G se prevede v C se prepiše nazaj v C
+%
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline
+        58 & 50 & 42 & 34 & 26 & 18 & 10 & 2 \\ \hline
+        60 & 52 & 44 & 36 & 28 & 20 & 12 & 4 \\ \hline
+        62 & 54 & 46 & 38 & 30 & 22 & 14 & 6 \\ \hline
+        64 & 56 & 48 & 40 & 32 & 24 & 16 & 8 \\ \hline
+        57 & 49 & 41 & 33 & 25 & 17 & 9 & 1 \\ \hline
+        59 & 51 & 43 & 35 & 27 & 19 & 11 & 3 \\ \hline
+        61 & 53 & 45 & 37 & 29 & 21 & 13 & 5 \\ \hline
+        63 & 55 & 47 & 39 & 31 & 23 & 15 & 7 \\ \hline
+    \end{tabular}
+    \caption{P-škatla}
+    \label{table 3}
+\end{table}
+
+\begin{table}[!ht]
+    \centering
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline
+        40 & 8 & 48 & 16 & 56 & 24 & 64 & 32 \\ \hline
+        39 & 7 & 47 & 15 & 55 & 23 & 63 & 31 \\ \hline
+        38 & 6 & 46 & 14 & 54 & 22 & 62 & 30 \\ \hline
+        37 & 5 & 45 & 13 & 53 & 21 & 61 & 29 \\ \hline
+        36 & 4 & 44 & 12 & 52 & 20 & 60 & 28 \\ \hline
+        35 & 3 & 43 & 11 & 51 & 19 & 59 & 27 \\ \hline
+        34 & 2 & 42 & 10 & 50 & 18 & 58 & 26 \\ \hline
+        33 & 1 & 41 & 9 & 49 & 17 & 57 & 25 \\ \hline
+    \end{tabular}
+    \caption{Inverz P-škatle}
+    \label{table 4}
+\end{table}
+
+\subsection{Generacija ključev}
+Iz primarnega ključa (ki je v našem algoritmu nujno integer zaradi načina generiranja), ki ga uporabnik poljubno izbere, se zgenerira toliko ključev-kroga kolikor je krogov enkripcije SP mreže.
+\subsection{XOR z ključem-kroga}
+\label{g01:subsec:2}
+
+Preden naredimo XOR z ključem-kroga pretvorimo posamezno bazo v bite na način prikazan na enačbi 1.2. Nato 64-bitni tekst in 64-bitni ključ-kroga XOR-amo ter rezultat pretvorimo nazaj v dušikove baze.
+Iz primarnega ključa (ki je v našem algoritmu nujno integer zaradi načina generiranja), ki ga uporabnik izbere se zgenerira toliko ključev-kroga kolikor je krogov enkripcije SP mreže.
+
+\begin{equation}
+\begin{split}
+\small 
+A \Longleftrightarrow 00 \\
+G \Longleftrightarrow 01 \\
+C \Longleftrightarrow 10 \\
+T \Longleftrightarrow 11 \\
+\end{split}
+\end{equation}
+
+
+\subsection{Integriteta shranjenih podatkov}
+\label{g01:subsec:2}
+Integriteto shranjenih podatkov zagotovimo, tako da podatkom dodamo hash. Hash se izračuna s pomočjo enkripcijkega ključa in podatkov. To odpre novo zahtevo, v primeru da v genskem zapisu pride do mutacij, jih moramo biti sposobni zaznati in odpraviti. 
+
+\subsection{Spontane genske mutacije}
+\label{g01:subsec:2}
+Kot rečeno, vedno obstaja verjetnost mutacije genskega zapisa. Najbolj pogost tipa mutacije sta menjava nukleotida in izbrisan ali dodan nukleotid. Analogen pojav menjavi nukleotida v digitalnih vezjih je ti. bit-flip. Verjnost okvare je manjsa od $10^{-9}$. Zbrisana ali dodana dušikova baza spremeni celotno sekvenco. Napake so posledica zunanjih vplivov kot so prisotnosti UV sevanja, termični vpliv.
+
+\newpage
+
+\section{Zaznava in odprava genskih mutacij}
+\label{g01:subsec:2}
+Iz kriptiranega genskega zapisamo izračunamo hash za vsakih m nukleotidov. Preden se lotimo dekripcije genskega zapisa, simuliramo napako oz. mutacijo pri kateri se baza zamenja. Mutacijo detektiramo z ponovnim izračunom hash-a za vsakih m nukleotidov. V primeru ko se izracuni hash ne ujema z originalnim hashom vemo, da je na tem mestu prišlo do napake. Napako odpravimo z racunanjem vseh kombinacij niza  ATGC  dolzine m in racunanjem hasha dokler se ta ne ujema z originalnim hashom. Zanasamo se na dejstvo da so mutacije genskega zapisa redke. Alternative pristop bi bilo reproduciranje genskega zapisa in izbor najbolj pogostega niza na območju napake.
+
+
+\begin{equation}
+\begin{split}
+\small 
+CT_o = TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTGTGCCCAAT \\
+CT_m = AAGTCCGATTAGTTAAGTGAGTCCTTTTGTGCCTGAGCCCAAT \\
+CT_c = TAGTCCGATTAGTCAAGTCAGTCCTTCTGTGCCTGTGCCCAAT
+\end{split}
+\end{equation}
+
+\section{Test difuzije in konfuzije}
+Test difuzije testira, da sprememba ene izmed črke vhodnega teksta, vpliva na vse izhodne vrednosti zašifrirane sekvence dušikovih baz.
+
+\begin{equation}
+\begin{split}
+    "pirsing" \Longrightarrow ACCCACCCTACGACGAAAAAATATAGGTCGAC \\
+    "pissing" \Longrightarrow ACGGTCAAATCTGTATGCCGCACATCACGAGT \\
+    "kissing" \Longrightarrow CAGACAGATGAGACACACTAAAATGTCGGCAT
+\end{split}
+\end{equation}
+
+Test konfuzije testira, da ni nobene zveze med ključem in besedilom, torej če v ključu spremenimo en znak, bi to moralo vplivati na celotno zašifrirano besedilo.
+
+\begin{equation}
+\begin{split}
+\small 
+\text{key} = 1111 \Longrightarrow GGAATCTTGGCTTTCCGTAATCTGAGTCCTCC \\
+\small
+\text{key} = 1211 \Longrightarrow CGCATAGGACTTTTTAGAGCGAACACCGGTTG 
+\end{split}
+\end{equation}
+
+\newpage
+
+\section{Izboljšave}
+
+Za samo ovrednotenje kriptografskega algoritma bi ne samo potrebovali popolen matematičen model ampak hkrati tudi temeljito analizo sistem in ovrednotenje, kako težko je zakriptirane podatke v DNA dešifrirati brez uporabe ključa. Eden izmed enostavnejših testov in pokazateljev, ki bi jih lahko naredili v naslednjem koraku bi bila analiza brute-force napada na predlaganem sistemu.
+
+\section{Uporaba}
+
+Podatke želimo iz varnostnih razlogov zavarovati preden jih shranimo v genski material, zato v proces pomnenja dodamo postopek šifriranja in dešifriranja. Poleg tega je kombinacija velike gostote zapisa in paralelnega procesiranja eden izmed bolj vročih tem dandanes pri čemer biološko procesiranje spada med pomembnejše kandidate.
+
+\section{Zaključek}
+V našem delu smo pokazali, da se da izvesti šifriranje z SP mrežo tudi z biološkim procesiranjem, če bo to sama tehnologija in bolj cenovna dosegljivost enkrat dovoljevala. Poleg izredno majhne fizične velikosti zakriptiranih podatkov pa je velika prednost tudi to, da se procesiranje v DNA-ju dogaja paralelno, kar nam omogoča to da lahko za šifriranje uporabimo bistveno večji ključ, kar posledično metodo nardi veliko bolj varno pred napadi. Dvojna strukutra DNA vijacice nam hkrati zagotavlja tudi reduncanco zapisa podatkov. Velja, da se na istoležnem mestu v komplementarnem nizu hrani komplement hranjenega podatka. Reduncanca podatkov je predvsem uporabna pri postopkih detekcije napak.
+
+DNA nit ima zelo velik potencial zaradi visoke zgoščenosti ter dolgoročnosti shrambe, vendar je pred končno uresničitvijo ideje potrebno odpraviti še kar nekaj težav kot so naprimer, počasni zapis in branje podatkov iz niti, zanesljivost...
+
+\section{Doprinos avtorjev}
+V izdelavi vezij in seminarske naloge, smo sodelovali vsi avtorji in si delo razdelili na približno enake dele.
+
+\begin{thebibliography}{1}
+\bibitem{IEEEhowto:kopka}
+https://web.stanford.edu/~kaleeg/chem32/biopol/
+
+\bibitem{IEEEhowto:kopka}
+https://www.sciencedirect.com/science/article/pii/S187705091500109X
+
+\end{thebibliography}
+
+%\cite{}
+
+
+\bibliographystyle{ieeetr}
+\bibliography{citation}
+
+
+%\printindex
+
+\end{document}
+
+
