@@ -568,7 +568,9 @@ def convert_hex_to_bin(blocks):
 if __name__ == '__main__':
     string = sys.argv[2]
     #print(string)
-    key = int(sys.argv[1]) # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
+    # encodeing
+    key = int.from_bytes(sys.argv[1].encode("utf-8"), byteorder='big')
+
     round_keys = generate_round_keys(key)
     #print(round_keys)
     blocks = encode_into_blocks(string)
@@ -608,7 +610,7 @@ if __name__ == '__main__':
     print_blocks(dna_text)
     # Compute hash from key and cipher text to provide integrity
     hashes = compute_hashes(dna_text, key)
-    print_blocks(hashes)
+    #print_blocks(hashes)
 
     # Convert hash digest to DNA sequence and store it
     binaries = convert_hex_to_bin(hashes)

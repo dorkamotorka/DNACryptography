@@ -5,7 +5,7 @@ import mutations
 if __name__ == '__main__':
     # DNA cipher text
     ct  = [sys.argv[2]]
-    key = int(sys.argv[1])
+    key = int.from_bytes(sys.argv[1].encode("utf-8"), byteorder='big')
 
     # For now just compute hash blocks from un-mutated ct.
     M = 3

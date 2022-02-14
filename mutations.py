@@ -38,7 +38,6 @@ def remove_nucletotide(seq, num_mutations = 1):
 
 
 if __name__ == '__main__':
-    '''
     dna_text = "TCTCCCCCTCATACCGAAAAGCTTCCAGACCC"
     dna_text_mutated = mutatate_nucleotides(dna_text, len(dna_text)) 
     print(dna_text_mutated)
@@ -48,9 +47,3 @@ if __name__ == '__main__':
 
     dna_text_mutated = remove_nucletotide(dna_text)
     print(dna_text_mutated)
-    '''
-    pass
-    
-
-    
-

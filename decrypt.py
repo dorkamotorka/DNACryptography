@@ -262,7 +262,8 @@ def remove_padding(blocks):
 if __name__ == '__main__':
     # DNA cipher text
     ct = [sys.argv[2]]
-    key = int(sys.argv[1])
+    # encodeing
+    key = int.from_bytes(sys.argv[1].encode("utf-8"), byteorder='big')
     round_keys = round_keys = generate_round_keys(key)
 
     for r in reversed(round_keys):
@@ -298,7 +299,7 @@ if __name__ == '__main__':
 
     # Remove padding
     unpadded = remove_padding(invsub)
-    print_blocks(unpadded)
+    #print_blocks(unpadded)
 
     # Decode text
     decoded = decode_from_blocks(unpadded)

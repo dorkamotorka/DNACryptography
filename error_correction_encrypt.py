@@ -4,7 +4,7 @@ from error_correction import *
 if __name__ == '__main__':
     string = sys.argv[2]
     #print(string)
-    key = int(sys.argv[1]) # mora biti integer! - isti key oz. seed zgenerira vedno iste ključe-krogov!
+    key = int.from_bytes(sys.argv[1].encode("utf-8"), byteorder='big')
     round_keys = generate_round_keys(key)
     #print(round_keys)
     blocks = encode_into_blocks(string)
